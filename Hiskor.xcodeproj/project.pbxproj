@@ -109,8 +109,6 @@
 		8F7F099616B2FAF3005F124D = {
 			isa = PBXGroup;
 			children = (
-				8F7F0A0016B30BEB005F124D /* MobileCoreServices.framework */,
-				8F7F09FE16B30BD0005F124D /* SystemConfiguration.framework */,
 				8F7F09AB16B2FAF3005F124D /* Hiskor */,
 				8F7F09A416B2FAF3005F124D /* Frameworks */,
 				8F7F09A216B2FAF3005F124D /* Products */,
@@ -129,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				8F7F09E116B30B71005F124D /* AFNetworking */,
+				8F7F0A0016B30BEB005F124D /* MobileCoreServices.framework */,
+				8F7F09FE16B30BD0005F124D /* SystemConfiguration.framework */,
 				8F7F09A516B2FAF3005F124D /* UIKit.framework */,
 				8F7F09A716B2FAF3005F124D /* Foundation.framework */,
 				8F7F09A916B2FAF3005F124D /* CoreGraphics.framework */,
