@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F4EE5D716B84181003F6C74 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EE5D616B84181003F6C74 /* LoginViewController.m */; };
+		8F4EE5DB16B845AA003F6C74 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */; };
 		8F7F09A616B2FAF3005F124D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7F09A516B2FAF3005F124D /* UIKit.framework */; };
 		8F7F09A816B2FAF3005F124D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7F09A716B2FAF3005F124D /* Foundation.framework */; };
 		8F7F09AA16B2FAF3005F124D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7F09A916B2FAF3005F124D /* CoreGraphics.framework */; };
@@ -41,6 +43,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F4EE5D516B84181003F6C74 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8F4EE5D616B84181003F6C74 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8F4EE5D916B845AA003F6C74 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		8F7F09A116B2FAF3005F124D /* Hiskor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hiskor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7F09A516B2FAF3005F124D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F7F09A716B2FAF3005F124D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,7 +152,11 @@
 				8F7F09C116B2FAF3005F124D /* FirstViewController.m */,
 				8F7F09C716B2FAF3005F124D /* SecondViewController.h */,
 				8F7F09C816B2FAF3005F124D /* SecondViewController.m */,
+				8F4EE5D516B84181003F6C74 /* LoginViewController.h */,
+				8F4EE5D616B84181003F6C74 /* LoginViewController.m */,
 				8F7F09AC16B2FAF3005F124D /* Supporting Files */,
+				8F4EE5D916B845AA003F6C74 /* TabBarViewController.h */,
+				8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */,
 			);
 			path = Hiskor;
 			sourceTree = "<group>";
@@ -295,6 +305,8 @@
 				8F7F09FB16B30B71005F124D /* AFURLConnectionOperation.m in Sources */,
 				8F7F09FC16B30B71005F124D /* AFXMLRequestOperation.m in Sources */,
 				8F7F09FD16B30B71005F124D /* UIImageView+AFNetworking.m in Sources */,
+				8F4EE5D716B84181003F6C74 /* LoginViewController.m in Sources */,
+				8F4EE5DB16B845AA003F6C74 /* TabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
