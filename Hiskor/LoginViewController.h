@@ -10,5 +10,7 @@
 
 @interface LoginViewController : UIViewController
 - (IBAction)btnLogin:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *fldUsername;
+@property (strong, nonatomic) IBOutlet UITextField *fldPassword;
 
 @end

@@ -7,12 +7,15 @@
 //
 
 #import "LoginViewController.h"
+#import "AFHTTPClient.h"
+#import "AFHTTPRequestOperation.h"
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+@synthesize fldUsername, fldPassword;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +39,30 @@
 }
 
 - (IBAction)btnLogin:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    /*id params = @{
+                @"username": self.fldUsername.text,
+                @"password": self.fldPassword.text
+    };*/
+    
+    NSString *username = fldUsername.text;
+    NSString *password = fldPassword.text;
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            username, @"login[username]",
+                            password, @"login[password]",
+                            nil];
+    
+    NSURL *url = [NSURL URLWithString:@"http://198.14.215.131/hiskor"];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    
+    [httpClient postPath:@"/api" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Response: %@", text);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
 }
 @end
