@@ -10,6 +10,8 @@
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFJSONRequestOperation.h"
+#import "Lockbox.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface RegisterViewController ()
 
@@ -51,6 +53,7 @@
 - (IBAction)btnCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)btnRegister:(id)sender {
     
     NSString *username = usernameField.text;
@@ -58,26 +61,60 @@
     NSString *confirmEmail = confirm_emailField.text;
     NSString *password = passwordField.text;
     NSString *confirmPassword = confirm_passwordField.text;
+    NSString *type = @"register";
+    
+    // Hashing Algorithm
+    NSString *salt = @"FSF^D&*FH#RJNF@!$JH#@$";
+    NSString *saltPassword = [password stringByAppendingString:salt];
+    NSString *passwordMD5 = [self md5:saltPassword];
     
     if ([email isEqualToString:confirmEmail] && [password isEqualToString:confirmPassword]) {
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password", email, @"email", nil];
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                username, @"username",
+                                passwordMD5, @"passwordMD5",
+                                email, @"email",
+                                type, @"type",
+                                nil];
         
-        NSURL *url = [NSURL URLWithString:@"http://localhost/"];
-        
+        // Sends request to server to login, server sends response via JSON
+        NSURL *url = [NSURL URLWithString:@"http://198.14.210.58/hiskor/"];
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-        [httpClient defaultValueForHeader:@"Accept"];
+        NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"register.php" parameters:params];
         
-        //[httpClient setParameterEncoding:AFJSONParameterEncoding];
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"Working User: %@", [JSON valueForKeyPath:@"username"]);
+                NSLog(@"Working Token: %@", [JSON valueForKeyPath:@"token"]);
+                                                                                                
+                // Save username to keychain
+                //NSString *usernameKey = [JSON valueForKeyPath:@"username"];
+                //[Lockbox setString:usernameKey forKey:kUsernameKeyString];
+                                                                                                
+                //NSString *tokenKey = [JSON valueForKeyPath:@"token"];
+                // Save token to keychain
+                //[Lockbox setString:tokenKey forKey:kTokenKeyString];
+            }
+            failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"Error with request");
+                NSLog(@"%@", [error localizedDescription]);
+        }];
         
-        [httpClient postPath:@"register.php" parameters:params
-                     success:^(AFHTTPRequestOperation *operation, id response) {
-                         NSLog(@"Working: %d", [operation.response statusCode]);
-                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                         NSLog(@"Error with Request");
-                         NSLog(@"%@", [error localizedDescription]);
-                     }];
-    } else {
-        NSLog(@"Email or password doesn't match, try again!");
+        [operation start];
     }
+}
+
+// MD5 Hashing Function
+- (NSString *)md5:(NSString *) input {
+    const char *cStr = [input UTF8String];
+    unsigned char digest[16];
+    CC_MD5(cStr, strlen(cStr), digest);
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    
+    return output;
 }
 @end
