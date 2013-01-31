@@ -40,6 +40,9 @@
 		8F7F09FD16B30B71005F124D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F09F416B30B71005F124D /* UIImageView+AFNetworking.m */; };
 		8F7F09FF16B30BD0005F124D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7F09FE16B30BD0005F124D /* SystemConfiguration.framework */; };
 		8F7F0A0116B30BEB005F124D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7F0A0016B30BEB005F124D /* MobileCoreServices.framework */; };
+		9236811016B9E91E008384CD /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9236810F16B9E91E008384CD /* RegisterViewController.m */; };
+		9236811B16BA29DD008384CD /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9236811A16BA29DD008384CD /* Lockbox.m */; };
+		9236811D16BA2B6C008384CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9236811C16BA2B6C008384CD /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,11 @@
 		8F7F09F416B30B71005F124D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		8F7F09FE16B30BD0005F124D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8F7F0A0016B30BEB005F124D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9236810E16B9E91E008384CD /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		9236810F16B9E91E008384CD /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		9236811916BA29DD008384CD /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
+		9236811A16BA29DD008384CD /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox.m; sourceTree = "<group>"; };
+		9236811C16BA2B6C008384CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9236811D16BA2B6C008384CD /* Security.framework in Frameworks */,
 				8F7F0A0116B30BEB005F124D /* MobileCoreServices.framework in Frameworks */,
 				8F7F09FF16B30BD0005F124D /* SystemConfiguration.framework in Frameworks */,
 				8F7F09A616B2FAF3005F124D /* UIKit.framework in Frameworks */,
@@ -133,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				8F7F09E116B30B71005F124D /* AFNetworking */,
+				9236811C16BA2B6C008384CD /* Security.framework */,
 				8F7F0A0016B30BEB005F124D /* MobileCoreServices.framework */,
 				8F7F09FE16B30BD0005F124D /* SystemConfiguration.framework */,
 				8F7F09A516B2FAF3005F124D /* UIKit.framework */,
@@ -145,6 +155,8 @@
 		8F7F09AB16B2FAF3005F124D /* Hiskor */ = {
 			isa = PBXGroup;
 			children = (
+				9236811916BA29DD008384CD /* Lockbox.h */,
+				9236811A16BA29DD008384CD /* Lockbox.m */,
 				8F7F09B416B2FAF3005F124D /* AppDelegate.h */,
 				8F7F09B516B2FAF3005F124D /* AppDelegate.m */,
 				8F7F09BD16B2FAF3005F124D /* MainStoryboard.storyboard */,
@@ -154,6 +166,8 @@
 				8F7F09C816B2FAF3005F124D /* SecondViewController.m */,
 				8F4EE5D516B84181003F6C74 /* LoginViewController.h */,
 				8F4EE5D616B84181003F6C74 /* LoginViewController.m */,
+				9236810E16B9E91E008384CD /* RegisterViewController.h */,
+				9236810F16B9E91E008384CD /* RegisterViewController.m */,
 				8F7F09AC16B2FAF3005F124D /* Supporting Files */,
 				8F4EE5D916B845AA003F6C74 /* TabBarViewController.h */,
 				8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */,
@@ -307,6 +321,8 @@
 				8F7F09FD16B30B71005F124D /* UIImageView+AFNetworking.m in Sources */,
 				8F4EE5D716B84181003F6C74 /* LoginViewController.m in Sources */,
 				8F4EE5DB16B845AA003F6C74 /* TabBarViewController.m in Sources */,
+				9236811016B9E91E008384CD /* RegisterViewController.m in Sources */,
+				9236811B16BA29DD008384CD /* Lockbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

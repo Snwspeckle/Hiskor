@@ -10,7 +10,8 @@
 
 @interface LoginViewController : UIViewController
 - (IBAction)btnLogin:(id)sender;
-@property (strong, nonatomic) IBOutlet UITextField *fldUsername;
-@property (strong, nonatomic) IBOutlet UITextField *fldPassword;
+- (IBAction)btnKeychainChecker:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *usernameField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordField;
 
 @end

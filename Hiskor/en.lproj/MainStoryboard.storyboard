@@ -242,10 +242,24 @@
                                     <segue destination="mHS-7L-k2w" kind="modal" identifier="registerSegue" id="RWo-DY-W09"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53E-Es-VSD">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Check Keychain Credentials">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnKeychainChecker:" destination="nMK-w8-8rx" eventType="touchUpInside" id="ZRL-gO-qXf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rDo-1s-VrA" firstAttribute="top" secondItem="TFm-pJ-l17" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3ph-1K-zL1"/>
+                            <constraint firstItem="53E-Es-VSD" firstAttribute="centerX" secondItem="rDo-1s-VrA" secondAttribute="centerX" type="default" id="DKv-mF-9uu"/>
                             <constraint firstItem="TFm-pJ-l17" firstAttribute="centerX" secondItem="gXE-sk-Rle" secondAttribute="centerX" type="default" id="Edq-RT-vRX"/>
                             <constraint firstItem="W5y-lm-Y9P" firstAttribute="leading" secondItem="zOh-uJ-qZw" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="O2X-ov-Lqy"/>
                             <constraint firstItem="YJr-2G-6aE" firstAttribute="top" secondItem="Vnx-Pw-l0f" secondAttribute="top" constant="91" id="QfL-S5-n8H"/>
@@ -257,24 +271,25 @@
                             <constraint firstItem="gXE-sk-Rle" firstAttribute="centerX" secondItem="170-bG-JvY" secondAttribute="centerX" type="default" id="mso-EI-kOe"/>
                             <constraint firstItem="TFm-pJ-l17" firstAttribute="top" secondItem="gXE-sk-Rle" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nag-Pl-lKm"/>
                             <constraint firstItem="170-bG-JvY" firstAttribute="top" secondItem="W5y-lm-Y9P" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="rV0-Ua-IFN"/>
+                            <constraint firstItem="53E-Es-VSD" firstAttribute="top" secondItem="rDo-1s-VrA" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tPM-QQ-rnL"/>
                             <constraint firstItem="rDo-1s-VrA" firstAttribute="centerX" secondItem="TFm-pJ-l17" secondAttribute="centerX" type="default" id="tVB-8K-e0z"/>
                             <constraint firstItem="gXE-sk-Rle" firstAttribute="top" secondItem="170-bG-JvY" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="xoD-5s-9xd"/>
                             <constraint firstItem="170-bG-JvY" firstAttribute="leading" secondItem="W5y-lm-Y9P" secondAttribute="leading" type="default" id="zzG-Ak-RxK"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="fldPassword" destination="170-bG-JvY" id="f45-Jr-QcA"/>
-                        <outlet property="fldUsername" destination="W5y-lm-Y9P" id="3hc-nW-Vn7"/>
+                        <outlet property="passwordField" destination="170-bG-JvY" id="Wr9-p8-ImS"/>
+                        <outlet property="usernameField" destination="W5y-lm-Y9P" id="p2L-O5-5uf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vps-DF-Rf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-854" y="178"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="Kdo-VG-kYj">
             <objects>
-                <viewController id="mHS-7L-k2w" sceneMemberID="viewController">
+                <viewController id="mHS-7L-k2w" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UCt-6G-vfE">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -282,11 +297,15 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UgT-hV-HAX">
                                 <items>
                                     <navigationItem title="Register" id="ncY-MC-7Cc">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hf6-OX-D2i"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hf6-OX-D2i">
+                                            <connections>
+                                                <action selector="btnCancel:" destination="mHS-7L-k2w" id="A4X-HM-Fo9"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-gL-ail">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Username:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-gL-ail">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -320,6 +339,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnRegister:" destination="mHS-7L-k2w" eventType="touchUpInside" id="aIs-7o-c70"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TBP-sg-IP3">
                                 <constraints>
@@ -380,6 +402,13 @@
                             <constraint firstAttribute="trailing" secondItem="DeC-C8-SXs" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="yd2-tF-XAC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirm_emailField" destination="H7L-nT-gqa" id="H7i-sx-BmK"/>
+                        <outlet property="confirm_passwordField" destination="aCF-eD-m6I" id="nqu-ew-Nk6"/>
+                        <outlet property="emailField" destination="DeC-C8-SXs" id="O9A-Gp-evM"/>
+                        <outlet property="passwordField" destination="ni5-0f-Gp7" id="vtK-2N-A04"/>
+                        <outlet property="usernameField" destination="TBP-sg-IP3" id="6K0-AA-yXK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3FW-Hd-XKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,13 +447,26 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
+                <relationship kind="action" name="btnKeychainChecker:"/>
                 <relationship kind="action" name="btnLogin:"/>
-                <relationship kind="outlet" name="fldPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="fldUsername" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RegisterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnCancel:"/>
+                <relationship kind="action" name="btnRegister:"/>
+                <relationship kind="outlet" name="confirm_emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="confirm_passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="TabBarViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>
