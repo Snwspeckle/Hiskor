@@ -8,6 +8,11 @@
 
 #import "HomeTableViewController.h"
 #import "TabBarViewController.h"
+#import "Lockbox.h"
+
+#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+
+#define kSaveAsString 0
 
 @interface HomeTableViewController ()
 
@@ -122,6 +127,7 @@
 - (IBAction)btnLogout:(id)sender {
     
     TabBarViewController *tabBarViewControllerObj = [[TabBarViewController alloc] init];
+    [Lockbox setString:@"FALSE" forKey:kLoggedinStatusKeyString];
     [tabBarViewControllerObj loginCheck];
 }
     

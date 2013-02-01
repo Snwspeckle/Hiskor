@@ -50,9 +50,11 @@
 
 - (void)loginCheck
 {
-    NSLog(@"Method being ran");
     UIStoryboard *mainstoryboard = self.storyboard;
     LoginViewController* loginViewController = [mainstoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    NSAssert(loginViewController, @"loginViewController should not be nil");
+    NSAssert(mainstoryboard, @"mainstoryboard also shouldn't be nil");
     
     if ([[Lockbox stringForKey:kLoggedinStatusKeyString] isEqualToString:@"FALSE"]) {
         [self presentViewController:loginViewController animated:NO completion:nil];

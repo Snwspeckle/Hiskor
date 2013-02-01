@@ -19,10 +19,8 @@
 		8F7F09BA16B2FAF3005F124D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09B916B2FAF3005F124D /* Default@2x.png */; };
 		8F7F09BC16B2FAF3005F124D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09BB16B2FAF3005F124D /* Default-568h@2x.png */; };
 		8F7F09BF16B2FAF3005F124D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09BD16B2FAF3005F124D /* MainStoryboard.storyboard */; };
-		8F7F09C216B2FAF3005F124D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F09C116B2FAF3005F124D /* FirstViewController.m */; };
 		8F7F09C416B2FAF3005F124D /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09C316B2FAF3005F124D /* first.png */; };
 		8F7F09C616B2FAF3005F124D /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09C516B2FAF3005F124D /* first@2x.png */; };
-		8F7F09C916B2FAF3005F124D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F09C816B2FAF3005F124D /* SecondViewController.m */; };
 		8F7F09CB16B2FAF3005F124D /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09CA16B2FAF3005F124D /* second.png */; };
 		8F7F09CD16B2FAF3005F124D /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09CC16B2FAF3005F124D /* second@2x.png */; };
 		8F7F09DC16B30348005F124D /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F09D916B30348005F124D /* gear.png */; };
@@ -65,12 +63,8 @@
 		8F7F09B916B2FAF3005F124D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8F7F09BB16B2FAF3005F124D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8F7F09BE16B2FAF3005F124D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		8F7F09C016B2FAF3005F124D /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		8F7F09C116B2FAF3005F124D /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		8F7F09C316B2FAF3005F124D /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		8F7F09C516B2FAF3005F124D /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		8F7F09C716B2FAF3005F124D /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		8F7F09C816B2FAF3005F124D /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		8F7F09CA16B2FAF3005F124D /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		8F7F09CC16B2FAF3005F124D /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		8F7F09D916B30348005F124D /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
@@ -163,10 +157,6 @@
 				8F7F09B416B2FAF3005F124D /* AppDelegate.h */,
 				8F7F09B516B2FAF3005F124D /* AppDelegate.m */,
 				8F7F09BD16B2FAF3005F124D /* MainStoryboard.storyboard */,
-				8F7F09C016B2FAF3005F124D /* FirstViewController.h */,
-				8F7F09C116B2FAF3005F124D /* FirstViewController.m */,
-				8F7F09C716B2FAF3005F124D /* SecondViewController.h */,
-				8F7F09C816B2FAF3005F124D /* SecondViewController.m */,
 				8F4EE5D516B84181003F6C74 /* LoginViewController.h */,
 				8F4EE5D616B84181003F6C74 /* LoginViewController.m */,
 				9236810E16B9E91E008384CD /* RegisterViewController.h */,
@@ -313,8 +303,6 @@
 			files = (
 				8F7F09B216B2FAF3005F124D /* main.m in Sources */,
 				8F7F09B616B2FAF3005F124D /* AppDelegate.m in Sources */,
-				8F7F09C216B2FAF3005F124D /* FirstViewController.m in Sources */,
-				8F7F09C916B2FAF3005F124D /* SecondViewController.m in Sources */,
 				8F7F09F516B30B71005F124D /* AFHTTPClient.m in Sources */,
 				8F7F09F616B30B71005F124D /* AFHTTPRequestOperation.m in Sources */,
 				8F7F09F716B30B71005F124D /* AFImageRequestOperation.m in Sources */,

@@ -126,6 +126,8 @@
     
     NSLog(@"Keychain username: %@", [Lockbox stringForKey:kUsernameKeyString]);
     NSLog(@"Keychain token: %@", [Lockbox stringForKey:kTokenKeyString]);
+    NSLog(@"Keychain login status: %@", [Lockbox stringForKey:kLoggedinStatusKeyString]);
+
 }
 
 
