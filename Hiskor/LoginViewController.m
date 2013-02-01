@@ -18,8 +18,6 @@
 #define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 #define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"
 
-#define kSaveAsString 0
-
 @interface LoginViewController ()
 
 @end

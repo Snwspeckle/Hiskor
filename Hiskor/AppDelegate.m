@@ -11,13 +11,13 @@
 
 #define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 
-#define kSaveAsString 0
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    NSLog(@" %@", [Lockbox stringForKey:kLoggedinStatusKeyString]);
     
     // Checks if login status has never been attempted, if not, set the status to FALSE
     if ([[Lockbox stringForKey:kLoggedinStatusKeyString] length] == 0) {

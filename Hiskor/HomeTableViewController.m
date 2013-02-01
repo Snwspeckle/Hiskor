@@ -12,13 +12,12 @@
 
 #define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 
-#define kSaveAsString 0
-
 @interface HomeTableViewController ()
 
 @end
 
 @implementation HomeTableViewController
+@synthesize animateBOOL;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -126,9 +125,9 @@
 
 - (IBAction)btnLogout:(id)sender {
     
-    TabBarViewController *tabBarViewControllerObj = [[TabBarViewController alloc] init];
+    self.animateBOOL = YES;
     [Lockbox setString:@"FALSE" forKey:kLoggedinStatusKeyString];
-    [tabBarViewControllerObj loginCheck];
+    [(TabBarViewController *)[self tabBarController] loginCheck:self.animateBOOL];
 }
     
 @end

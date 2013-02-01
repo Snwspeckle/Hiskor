@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeTableViewController.h"
 
 @interface TabBarViewController : UITabBarController
 
-- (void)loginCheck;
+- (void)loginCheck:(BOOL)animateBOOL;
 
 @end

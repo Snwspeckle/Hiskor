@@ -11,4 +11,6 @@
 @interface HomeTableViewController : UITableViewController
 - (IBAction)btnLogout:(id)sender;
 
+@property (nonatomic, assign) BOOL animateBOOL;
+
 @end
