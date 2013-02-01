@@ -68,7 +68,7 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             username, @"username",
-                            passwordMD5, @"passwordMD5",
+                            password, @"password",
                             type, @"type",
                             nil];
     
@@ -81,6 +81,7 @@
         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             NSLog(@"Working User: %@", [JSON valueForKeyPath:@"username"]);
             NSLog(@"Working Token: %@", [JSON valueForKeyPath:@"token"]);
+            NSLog(@"Return Message: %@", [JSON valueForKeyPath:@"message"]);
             
             // Save username to keychain
             NSString *usernameKey = [JSON valueForKeyPath:@"username"];

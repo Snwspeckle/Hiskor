@@ -374,8 +374,7 @@
                             <constraint firstItem="H7L-nT-gqa" firstAttribute="leading" secondItem="uxG-Yw-4tb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1bf-pG-xbV"/>
                             <constraint firstItem="CCg-3M-bnm" firstAttribute="leading" secondItem="UCt-6G-vfE" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4Yp-Pf-z0Y"/>
                             <constraint firstItem="TBP-sg-IP3" firstAttribute="leading" secondItem="Bpk-gL-ail" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AFa-Bn-0fe"/>
-                            <constraint firstItem="Ccn-i7-uuN" firstAttribute="centerY" secondItem="UCt-6G-vfE" secondAttribute="centerY" type="default" id="BUM-Ux-CDI"/>
-                            <constraint firstItem="Ccn-i7-uuN" firstAttribute="top" secondItem="aCF-eD-m6I" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Bza-EK-v6E"/>
+                            <constraint firstItem="Ccn-i7-uuN" firstAttribute="top" secondItem="UCt-6G-vfE" secondAttribute="top" constant="265" id="BbQ-1C-yV3"/>
                             <constraint firstItem="aCF-eD-m6I" firstAttribute="top" secondItem="ni5-0f-Gp7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="CU9-8b-hEK"/>
                             <constraint firstItem="UgT-hV-HAX" firstAttribute="trailing" secondItem="UCt-6G-vfE" secondAttribute="trailing" type="default" id="DwK-8m-Agp"/>
                             <constraint firstItem="Ccn-i7-uuN" firstAttribute="centerX" secondItem="aCF-eD-m6I" secondAttribute="centerX" type="default" id="F0b-bU-eAU"/>
@@ -396,6 +395,7 @@
                             <constraint firstItem="zqe-LV-lg9" firstAttribute="top" secondItem="UCt-6G-vfE" secondAttribute="top" constant="181" id="o0X-SF-lHf"/>
                             <constraint firstItem="aCF-eD-m6I" firstAttribute="leading" secondItem="ni5-0f-Gp7" secondAttribute="leading" type="default" id="qAs-4Y-9Na"/>
                             <constraint firstItem="DeC-C8-SXs" firstAttribute="top" secondItem="TBP-sg-IP3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="s0k-ra-aed"/>
+                            <constraint firstItem="H7L-nT-gqa" firstAttribute="top" secondItem="UCt-6G-vfE" secondAttribute="top" constant="139" id="sNo-ej-9a6"/>
                             <constraint firstAttribute="trailing" secondItem="ni5-0f-Gp7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="x5F-mv-Tux"/>
                             <constraint firstItem="tw1-PW-beQ" firstAttribute="top" secondItem="UCt-6G-vfE" secondAttribute="top" constant="102" id="xNC-9F-67Y"/>
                             <constraint firstItem="CCg-3M-bnm" firstAttribute="top" secondItem="UCt-6G-vfE" secondAttribute="top" constant="219" id="y7x-6h-cFE"/>

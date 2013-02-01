@@ -67,6 +67,7 @@
     NSString *salt = @"FSF^D&*FH#RJNF@!$JH#@$";
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
+    NSLog(@"Password: %@", passwordMD5);
     
     if ([email isEqualToString:confirmEmail] && [password isEqualToString:confirmPassword]) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -76,16 +77,19 @@
                                 type, @"type",
                                 nil];
         
+        NSLog(@"Params: %@", params);
+        
         // Sends request to server to login, server sends response via JSON
         NSURL *url = [NSURL URLWithString:@"http://198.14.210.58/hiskor/"];
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-        NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"register.php" parameters:params];
+        NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"api.php" parameters:params];
         
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSLog(@"Working User: %@", [JSON valueForKeyPath:@"username"]);
-                NSLog(@"Working Token: %@", [JSON valueForKeyPath:@"token"]);
-                                                                                                
+                NSLog(@"Working Email: %@", [JSON valueForKeyPath:@"email"]);
+                NSLog(@"Working Status: %@", [JSON valueForKeyPath:@"status"]);
+                
                 // Save username to keychain
                 //NSString *usernameKey = [JSON valueForKeyPath:@"username"];
                 //[Lockbox setString:usernameKey forKey:kUsernameKeyString];
