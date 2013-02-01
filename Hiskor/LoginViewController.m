@@ -15,6 +15,7 @@
 
 #define kUsernameKeyString  @"UsernameKeyString"
 #define kTokenKeyString     @"TokenKeyString"
+#define salt                @"FSF^D&*FH#RJNF@!$JH#@$"
 
 #define kSaveAsString 0
 
@@ -62,7 +63,6 @@
     NSString *type = @"login";
     
     // Hashing Algorithm
-    NSString *salt = @"FSF^D&*FH#RJNF@!$JH#@$";
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
     NSLog(@"PasswordMD5: %@", passwordMD5);
@@ -83,6 +83,18 @@
             NSLog(@"Username: %@", [JSON valueForKeyPath:@"username"]);
             NSLog(@"Token: %@", [JSON valueForKeyPath:@"token"]);
             NSLog(@"Return Message: %@", [JSON valueForKeyPath:@"message"]);
+            
+            if ([[JSON valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
+                
+                UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                
+                [loginAlert show];
+            } else {
+                
+                UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Proper login, thanks!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                
+                [loginAlert show];
+            }
             
             // Save username to keychain
             NSString *usernameKey = [JSON valueForKeyPath:@"username"];
