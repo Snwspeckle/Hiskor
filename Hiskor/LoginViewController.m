@@ -65,10 +65,11 @@
     NSString *salt = @"FSF^D&*FH#RJNF@!$JH#@$";
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
+    NSLog(@"PasswordMD5: %@", passwordMD5);
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             username, @"username",
-                            password, @"password",
+                            passwordMD5, @"passwordMD5",
                             type, @"type",
                             nil];
     
@@ -79,8 +80,8 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            NSLog(@"Working User: %@", [JSON valueForKeyPath:@"username"]);
-            NSLog(@"Working Token: %@", [JSON valueForKeyPath:@"token"]);
+            NSLog(@"Username: %@", [JSON valueForKeyPath:@"username"]);
+            NSLog(@"Token: %@", [JSON valueForKeyPath:@"token"]);
             NSLog(@"Return Message: %@", [JSON valueForKeyPath:@"message"]);
             
             // Save username to keychain

@@ -67,7 +67,6 @@
     NSString *salt = @"FSF^D&*FH#RJNF@!$JH#@$";
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
-    NSLog(@"Password: %@", passwordMD5);
     
     if ([email isEqualToString:confirmEmail] && [password isEqualToString:confirmPassword]) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -86,9 +85,9 @@
         
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSLog(@"Working User: %@", [JSON valueForKeyPath:@"username"]);
-                NSLog(@"Working Email: %@", [JSON valueForKeyPath:@"email"]);
-                NSLog(@"Working Status: %@", [JSON valueForKeyPath:@"status"]);
+                NSLog(@"Username: %@", [JSON valueForKeyPath:@"username"]);
+                NSLog(@"Email: %@", [JSON valueForKeyPath:@"email"]);
+                NSLog(@"Status: %@", [JSON valueForKeyPath:@"status"]);
                 
                 // Save username to keychain
                 //NSString *usernameKey = [JSON valueForKeyPath:@"username"];
