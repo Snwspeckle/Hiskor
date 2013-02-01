@@ -13,9 +13,10 @@
 #import "Lockbox.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#define kUsernameKeyString  @"UsernameKeyString"
-#define kTokenKeyString     @"TokenKeyString"
-#define salt                @"FSF^D&*FH#RJNF@!$JH#@$"
+#define kUsernameKeyString          @"UsernameKeyString"
+#define kTokenKeyString             @"TokenKeyString"
+#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+#define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"
 
 #define kSaveAsString 0
 
@@ -89,20 +90,27 @@
                 UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 
                 [loginAlert show];
+                
             } else {
                 
                 UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Proper login, thanks!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 
                 [loginAlert show];
+                
+                // Save username to keychain
+                NSString *usernameKey = [JSON valueForKeyPath:@"username"];
+                [Lockbox setString:usernameKey forKey:kUsernameKeyString];
+                
+                // Save token to keychain
+                NSString *tokenKey = [JSON valueForKeyPath:@"token"];
+                [Lockbox setString:tokenKey forKey:kTokenKeyString];
+                
+                // Save login status to keychain
+                [Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
+
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
             
-            // Save username to keychain
-            NSString *usernameKey = [JSON valueForKeyPath:@"username"];
-            [Lockbox setString:usernameKey forKey:kUsernameKeyString];
-            
-            NSString *tokenKey = [JSON valueForKeyPath:@"token"];
-            // Save token to keychain
-            [Lockbox setString:tokenKey forKey:kTokenKeyString];
         }
         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Error with request");

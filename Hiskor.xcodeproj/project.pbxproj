@@ -43,6 +43,7 @@
 		9236811016B9E91E008384CD /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9236810F16B9E91E008384CD /* RegisterViewController.m */; };
 		9236811B16BA29DD008384CD /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9236811A16BA29DD008384CD /* Lockbox.m */; };
 		9236811D16BA2B6C008384CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9236811C16BA2B6C008384CD /* Security.framework */; };
+		92AD11D816BC32CD0090C148 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD11D716BC32CD0090C148 /* HomeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		9236811916BA29DD008384CD /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
 		9236811A16BA29DD008384CD /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox.m; sourceTree = "<group>"; };
 		9236811C16BA2B6C008384CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		92AD11D616BC32CD0090C148 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
+		92AD11D716BC32CD0090C148 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 				8F7F09AC16B2FAF3005F124D /* Supporting Files */,
 				8F4EE5D916B845AA003F6C74 /* TabBarViewController.h */,
 				8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */,
+				92AD11D616BC32CD0090C148 /* HomeTableViewController.h */,
+				92AD11D716BC32CD0090C148 /* HomeTableViewController.m */,
 			);
 			path = Hiskor;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				8F4EE5DB16B845AA003F6C74 /* TabBarViewController.m in Sources */,
 				9236811016B9E91E008384CD /* RegisterViewController.m in Sources */,
 				9236811B16BA29DD008384CD /* Lockbox.m in Sources */,
+				92AD11D816BC32CD0090C148 /* HomeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

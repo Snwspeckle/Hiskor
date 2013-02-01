@@ -8,6 +8,13 @@
 
 #import "TabBarViewController.h"
 #import "LoginViewController.h"
+#import "Lockbox.h"
+
+#define kUsernameKeyString          @"UsernameKeyString"
+#define kTokenKeyString             @"TokenKeyString"
+#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+
+#define kSaveAsString 0
 
 @interface TabBarViewController ()
 
@@ -32,15 +39,24 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    UIStoryboard *mainstoryboard = self.storyboard;
-    LoginViewController* loginViewController = [mainstoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self presentViewController:loginViewController animated:NO completion:nil];
+    [self loginCheck];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loginCheck
+{
+    NSLog(@"Method being ran");
+    UIStoryboard *mainstoryboard = self.storyboard;
+    LoginViewController* loginViewController = [mainstoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    if ([[Lockbox stringForKey:kLoggedinStatusKeyString] isEqualToString:@"FALSE"]) {
+        [self presentViewController:loginViewController animated:NO completion:nil];
+    }
 }
 
 @end

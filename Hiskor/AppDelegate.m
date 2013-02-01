@@ -7,12 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import "Lockbox.h"
+
+#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+
+#define kSaveAsString 0
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Checks if login status has never been attempted, if not, set the status to FALSE
+    if ([[Lockbox stringForKey:kLoggedinStatusKeyString] length] == 0) {
+        
+        NSString *LoggedinStatusKey = @"FALSE";
+        [Lockbox setString:LoggedinStatusKey forKey:kLoggedinStatusKeyString];
+
+    }
     
     return YES;
 }
