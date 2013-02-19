@@ -13,6 +13,11 @@
 #import "Lockbox.h"
 #import <CommonCrypto/CommonDigest.h>
 
+#define kUsernameKeyString          @"UsernameKeyString"
+#define kTokenKeyString             @"TokenKeyString"
+#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+#define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"
+
 @interface RegisterViewController ()
 
 @end
@@ -64,7 +69,6 @@
     NSString *type = @"register";
     
     // Hashing Algorithm
-    NSString *salt = @"FSF^D&*FH#RJNF@!$JH#@$";
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
     
@@ -79,7 +83,7 @@
         NSLog(@"Params: %@", params);
         
         // Sends request to server to login, server sends response via JSON
-        NSURL *url = [NSURL URLWithString:@"http://198.14.210.58/hiskor/"];
+        NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/Hiskor_Admin"];
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
         NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"api.php" parameters:params];
         
@@ -90,12 +94,15 @@
                 NSLog(@"Status: %@", [JSON valueForKeyPath:@"status"]);
                 
                 // Save username to keychain
-                //NSString *usernameKey = [JSON valueForKeyPath:@"username"];
-                //[Lockbox setString:usernameKey forKey:kUsernameKeyString];
-                                                                                                
-                //NSString *tokenKey = [JSON valueForKeyPath:@"token"];
+                [Lockbox setString:[JSON valueForKeyPath:@"username"] forKey:kUsernameKeyString];
+                
                 // Save token to keychain
-                //[Lockbox setString:tokenKey forKey:kTokenKeyString];
+                [Lockbox setString:[JSON valueForKeyPath:@"token"] forKey:kTokenKeyString];
+                
+                // Save login status to keychain
+                [Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
             failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"Error with request");

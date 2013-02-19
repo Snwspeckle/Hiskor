@@ -64,7 +64,6 @@
     // Hashing Algorithm
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
-    NSLog(@"PasswordMD5: %@", passwordMD5);
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             username, @"username",
@@ -73,7 +72,7 @@
                             nil];
     
     // Sends request to server to login, server sends response via JSON
-    NSURL *url = [NSURL URLWithString:@"http://198.14.210.58/hiskor/"];
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/Hiskor_Admin"];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"api.php" parameters:params];
     
@@ -96,12 +95,10 @@
                 [loginAlert show];
                 
                 // Save username to keychain
-                NSString *usernameKey = [JSON valueForKeyPath:@"username"];
-                [Lockbox setString:usernameKey forKey:kUsernameKeyString];
+                [Lockbox setString:[JSON valueForKeyPath:@"username"] forKey:kUsernameKeyString];
                 
                 // Save token to keychain
-                NSString *tokenKey = [JSON valueForKeyPath:@"token"];
-                [Lockbox setString:tokenKey forKey:kTokenKeyString];
+                [Lockbox setString:[JSON valueForKeyPath:@"token"] forKey:kTokenKeyString];
                 
                 // Save login status to keychain
                 [Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];

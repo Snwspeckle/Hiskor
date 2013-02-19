@@ -14,8 +14,6 @@
 #define kTokenKeyString             @"TokenKeyString"
 #define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 
-#define kSaveAsString 0
-
 @interface TabBarViewController ()
 
 @end
