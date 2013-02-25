@@ -7,9 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "AFHTTPClient.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFJSONRequestOperation.h"
 #import "Lockbox.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -57,7 +54,7 @@
 
 - (IBAction)btnLogin:(id)sender {
     
-    NSString *username = [usernameField text];
+    NSString *email = [usernameField text];
     NSString *password = [passwordField text];
     NSString *type = @"login";
     
@@ -66,60 +63,56 @@
     NSString *passwordMD5 = [self md5:saltPassword];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            username, @"username",
+                            email, @"email",
                             passwordMD5, @"passwordMD5",
                             type, @"type",
                             nil];
     
-    // Sends request to server to login, server sends response via JSON
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/Hiskor_Admin"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"api.php" parameters:params];
+	[NetworkingManager sendDictionary:params responseHandler:self];
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            NSLog(@"Username: %@", [JSON valueForKeyPath:@"username"]);
-            NSLog(@"Token: %@", [JSON valueForKeyPath:@"token"]);
-            NSLog(@"Return Message: %@", [JSON valueForKeyPath:@"message"]);
-            
-            if ([[JSON valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
-                
-                UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid username or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                
-                [loginAlert show];
-                
-            } else {
-                
-                UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Proper login, thanks!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                
-                [loginAlert show];
-                
-                // Save username to keychain
-                [Lockbox setString:[JSON valueForKeyPath:@"username"] forKey:kUsernameKeyString];
-                
-                // Save token to keychain
-                [Lockbox setString:[JSON valueForKeyPath:@"token"] forKey:kTokenKeyString];
-                
-                // Save login status to keychain
-                [Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
+}
 
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            
-        }
-        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            NSLog(@"Error with request");
-            NSLog(@"%@", [error localizedDescription]);
-        }];
-    
-    [operation start];
-    
+- (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
+	
+	NSLog(@"Email: %@", [response valueForKeyPath:@"email"]);
+	NSLog(@"Token: %@", [response valueForKeyPath:@"token"]);
+	NSLog(@"Return Message: %@", [response valueForKeyPath:@"message"]);
+	
+	if ([[message valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid email or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		
+	} else {
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Proper login, thanks!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		
+		// Save username to keychain
+		[Lockbox setString:[response valueForKeyPath:@"email"] forKey:kUsernameKeyString];
+		
+		// Save token to keychain
+		[Lockbox setString:[response valueForKeyPath:@"token"] forKey:kTokenKeyString];
+		
+		// Save login status to keychain
+		[Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
+		
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
+}
+
+- (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
+	
+	NSLog(@"Error with request");
+	NSLog(@"%@", [error localizedDescription]);
 }
 
 // Keychain Checker Function
 - (IBAction)btnKeychainChecker:(id)sender {
     
-    NSLog(@"Keychain username: %@", [Lockbox stringForKey:kUsernameKeyString]);
+    NSLog(@"Keychain email: %@", [Lockbox stringForKey:kUsernameKeyString]);
     NSLog(@"Keychain token: %@", [Lockbox stringForKey:kTokenKeyString]);
     NSLog(@"Keychain login status: %@", [Lockbox stringForKey:kLoggedinStatusKeyString]);
 

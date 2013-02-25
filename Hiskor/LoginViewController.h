@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingManager.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <NetworkingResponseHandler>
 - (IBAction)btnLogin:(id)sender;
 - (IBAction)btnKeychainChecker:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
