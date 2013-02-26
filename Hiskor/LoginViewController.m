@@ -78,7 +78,7 @@
 	NSLog(@"Token: %@", [response valueForKeyPath:@"token"]);
 	NSLog(@"Return Message: %@", [response valueForKeyPath:@"message"]);
 	
-	if ([[message valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
+	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
 		
 		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid email or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		
