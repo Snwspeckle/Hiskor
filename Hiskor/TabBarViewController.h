@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeTableViewController.h"
+#import "GamesTableViewController.h"
 
 @interface TabBarViewController : UITabBarController
 

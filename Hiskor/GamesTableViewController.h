@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeTableViewController : UITableViewController
+@interface GamesTableViewController : UITableViewController
 - (IBAction)btnLogout:(id)sender;
 
 @property (nonatomic, assign) BOOL animateBOOL;

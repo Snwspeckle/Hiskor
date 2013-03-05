@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Home Table View Controller - Home-->
+        <!--Games Table View Controller - Games-->
         <scene sceneID="fPC-LF-2FU">
             <objects>
-                <tableViewController id="lcW-YX-cfi" customClass="HomeTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Games" id="lcW-YX-cfi" customClass="GamesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7CH-Ne-npm">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="Sj6-wO-0Id">
+                    <navigationItem key="navigationItem" title="Games" id="Sj6-wO-0Id">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="7YA-7W-c0W">
                             <connections>
                                 <action selector="btnLogout:" destination="lcW-YX-cfi" id="sc4-Ot-LOy"/>
@@ -36,11 +36,11 @@
             </objects>
             <point key="canvasLocation" x="1173" y="-836"/>
         </scene>
-        <!--Navigation Controller - Home-->
+        <!--Navigation Controller - Games-->
         <scene sceneID="gqa-M1-z8N">
             <objects>
                 <navigationController definesPresentationContext="YES" id="3N0-xb-0pY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house.png" id="Y4V-UM-hVz"/>
+                    <tabBarItem key="tabBarItem" title="Games" image="house.png" id="Y4V-UM-hVz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YoF-1g-6tG">
                         <autoresizingMask key="autoresizingMask"/>
@@ -53,36 +53,10 @@
             </objects>
             <point key="canvasLocation" x="639" y="-837"/>
         </scene>
-        <!--Table View Controller - Scores-->
-        <scene sceneID="0lx-8y-2Sz">
-            <objects>
-                <tableViewController id="osv-vA-7Lw" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T6h-fU-5sL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zGn-iv-0fu">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Scores" id="6IB-uJ-gfn"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D4v-U4-k7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1173" y="-161"/>
-        </scene>
-        <!--Table View Controller - Tickets-->
+        <!--Tickets View Controller - Tickets-->
         <scene sceneID="bmg-m1-5VH">
             <objects>
-                <tableViewController id="9zp-s5-Nmp" sceneMemberID="viewController">
+                <tableViewController title="Tickets" id="9zp-s5-Nmp" customClass="TicketsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T7l-lG-hrB">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,23 +136,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-7l-IeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="639" y="1196"/>
-        </scene>
-        <!--Navigation Controller - Scores-->
-        <scene sceneID="nW8-Ec-1SC">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="c43-l3-7KR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scores" image="trophy.png" id="fLw-y8-Usf"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lmn-sl-nFu">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="osv-vA-7Lw" kind="relationship" relationship="rootViewController" id="5WL-q9-RLF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UgA-aO-f63" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="639" y="-161"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Znj-1J-rbJ">
@@ -433,7 +390,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="3N0-xb-0pY" kind="relationship" relationship="viewControllers" id="rLN-P3-8OZ"/>
-                        <segue destination="c43-l3-7KR" kind="relationship" relationship="viewControllers" id="Kkw-5x-JTN"/>
                         <segue destination="ufi-SB-5sP" kind="relationship" relationship="viewControllers" id="b4U-RK-rdc"/>
                         <segue destination="gv1-JF-PYg" kind="relationship" relationship="viewControllers" id="2kU-1m-WgB"/>
                     </connections>
@@ -447,11 +403,10 @@
         <image name="gear.png" width="30" height="30"/>
         <image name="house.png" width="30" height="30"/>
         <image name="ticket.png" width="30" height="30"/>
-        <image name="trophy.png" width="30" height="30"/>
     </resources>
     <classes>
-        <class className="HomeTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
+        <class className="GamesTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="btnLogout:"/>
             </relationships>
@@ -482,6 +437,9 @@
         </class>
         <class className="TabBarViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>
+        </class>
+        <class className="TicketsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TicketsViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

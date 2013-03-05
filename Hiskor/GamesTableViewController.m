@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 ITP. All rights reserved.
 //
 
-#import "HomeTableViewController.h"
+#import "GamesTableViewController.h"
 #import "TabBarViewController.h"
 #import "Lockbox.h"
 
 #define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 
-@interface HomeTableViewController ()
+@interface GamesTableViewController ()
 
 @end
 
-@implementation HomeTableViewController
+@implementation GamesTableViewController
 @synthesize animateBOOL;
 
 - (id)initWithStyle:(UITableViewStyle)style
