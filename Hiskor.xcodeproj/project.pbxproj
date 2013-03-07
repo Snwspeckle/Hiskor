@@ -13,6 +13,7 @@
 		44B5E52516CC0B0000F538A5 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E52016CC0B0000F538A5 /* zbar-help.html */; };
 		44B5E52616CC0B0000F538A5 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E52116CC0B0000F538A5 /* zbar-helpicons.png */; };
 		44B5E52716CC0B0000F538A5 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E52216CC0B0000F538A5 /* zbar-samples.png */; };
+		6E0EF89916E6775D00CF2460 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0EF89816E6775D00CF2460 /* SettingsViewController.m */; };
 		6E9E611416E5254A0050652C /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9E611316E5254A0050652C /* TicketsViewController.m */; };
 		8F4EE5D716B84181003F6C74 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EE5D616B84181003F6C74 /* LoginViewController.m */; };
 		8F4EE5DB16B845AA003F6C74 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */; };
@@ -79,6 +80,8 @@
 		44B5E52016CC0B0000F538A5 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		44B5E52116CC0B0000F538A5 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
 		44B5E52216CC0B0000F538A5 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
+		6E0EF89716E6775D00CF2460 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		6E0EF89816E6775D00CF2460 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6E9E611216E5254A0050652C /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		6E9E611316E5254A0050652C /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
 		8F4EE5D516B84181003F6C74 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				9236810F16B9E91E008384CD /* RegisterViewController.m */,
 				8F4EE5D916B845AA003F6C74 /* TabBarViewController.h */,
 				8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */,
+				6E0EF89716E6775D00CF2460 /* SettingsViewController.h */,
+				6E0EF89816E6775D00CF2460 /* SettingsViewController.m */,
 				92AD11D616BC32CD0090C148 /* GamesTableViewController.h */,
 				92AD11D716BC32CD0090C148 /* GamesTableViewController.m */,
 				8F7F09AC16B2FAF3005F124D /* Supporting Files */,
@@ -429,6 +434,7 @@
 				92AD11D816BC32CD0090C148 /* GamesTableViewController.m in Sources */,
 				440EB4B116D69AD30090DC36 /* NetworkingManager.m in Sources */,
 				6E9E611416E5254A0050652C /* TicketsViewController.m in Sources */,
+				6E0EF89916E6775D00CF2460 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
