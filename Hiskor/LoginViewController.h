@@ -12,6 +12,9 @@
 @interface LoginViewController : UIViewController <NetworkingResponseHandler>
 - (IBAction)btnLogin:(id)sender;
 - (IBAction)btnKeychainChecker:(id)sender;
+
+- (IBAction)btnCHEAT:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 
