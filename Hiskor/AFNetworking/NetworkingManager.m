@@ -18,7 +18,7 @@
 	NSDictionary *message = [dictionary copy];
 		
 	// Sends request to server to login, server sends response via JSON
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/Hiskor_Admin"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.0.100/Hiskor_Admin"];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"api.php" parameters:message];
     

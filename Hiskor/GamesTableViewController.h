@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingManager.h"
 
-@interface GamesTableViewController : UITableViewController
+@interface GamesTableViewController : UITableViewController <NetworkingResponseHandler>
+
 - (IBAction)btnLogout:(id)sender;
+- (void)refresh;
 
 @property (nonatomic, assign) BOOL animateBOOL;
+@property (strong, nonatomic) NSMutableOrderedSet *games;
 
 @end

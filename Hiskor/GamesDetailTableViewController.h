@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingManager.h"
 
-@interface GamesDetailTableViewController : UITableViewController
+@interface GamesDetailTableViewController : UITableViewController <NetworkingResponseHandler>
+
+@property (strong, nonatomic) NSString *ticketData;
+@property (strong, nonatomic) NSDictionary *gameData;
+@property (assign, nonatomic) BOOL ticketLoaded;
 
 @end

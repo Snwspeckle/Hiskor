@@ -10,4 +10,12 @@
 
 @interface QRCodeViewController : UIViewController
 
+@property (strong, nonatomic) NSString *dataString;
+@property (strong, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UIImageView *qrCodeImageView;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil dataString:(NSString *)data;
+- (IBAction)doneButtonPressed;
+
 @end

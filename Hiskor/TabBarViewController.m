@@ -10,10 +10,6 @@
 #import "LoginViewController.h"
 #import "Lockbox.h"
 
-#define kUsernameKeyString          @"UsernameKeyString"
-#define kTokenKeyString             @"TokenKeyString"
-#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
-
 @interface TabBarViewController ()
 
 @end

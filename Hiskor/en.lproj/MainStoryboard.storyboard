@@ -13,22 +13,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mYO-5J-xrk">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="ao3-Cw-cak" style="IBUITableViewCellStyleDefault" id="mYO-5J-xrk">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ao3-Cw-cak">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="JHH-Sg-h1C" kind="push" identifier="QRTicket" id="uQq-Kq-KJJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                     </tableView>
                     <navigationItem key="navigationItem" title="Games" id="Sj6-wO-0Id"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ull-on-O4G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173" y="-837"/>
+            <point key="canvasLocation" x="1137" y="-157"/>
+        </scene>
+        <!--Games Detail Table View Controller-->
+        <scene sceneID="Jrg-hG-9Hl">
+            <objects>
+                <tableViewController id="JHH-Sg-h1C" customClass="GamesDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Kxk-wS-99b">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="GamesDetailTableViewControllerCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GamesDetailTableViewControllerCell" id="gXl-fY-mis">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="JHH-Sg-h1C" id="3yb-A4-0dW"/>
+                            <outlet property="delegate" destination="JHH-Sg-h1C" id="EuO-2k-fa6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="z3b-Ul-NRZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KGV-Ru-481" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="-157"/>
         </scene>
         <!--Navigation Controller - Games-->
         <scene sceneID="gqa-M1-z8N">
@@ -45,49 +89,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4X-8D-biv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="-837"/>
-        </scene>
-        <!--Tickets View Controller - Tickets-->
-        <scene sceneID="bmg-m1-5VH">
-            <objects>
-                <tableViewController title="Tickets" id="9zp-s5-Nmp" customClass="TicketsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T7l-lG-hrB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uNu-Js-QEr">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Tickets" id="lCl-jz-s9k"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hVT-eq-QNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1173" y="521"/>
-        </scene>
-        <!--Navigation Controller - Tickets-->
-        <scene sceneID="LQC-mO-2Qu">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="ufi-SB-5sP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tickets" image="ticket.png" id="AEO-b1-e1U"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dwx-fq-Z3A">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="9zp-s5-Nmp" kind="relationship" relationship="rootViewController" id="R9z-9S-FCg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pph-wa-VKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="639" y="521"/>
+            <point key="canvasLocation" x="603" y="-157"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="hdY-Or-IsW">
@@ -119,7 +121,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1u-jb-HSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173" y="1196"/>
+            <point key="canvasLocation" x="1129" y="580"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="duf-zE-cho">
@@ -135,7 +137,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-7l-IeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="1196"/>
+            <point key="canvasLocation" x="595" y="580"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Znj-1J-rbJ">
@@ -405,7 +407,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="3N0-xb-0pY" kind="relationship" relationship="viewControllers" id="rLN-P3-8OZ"/>
-                        <segue destination="ufi-SB-5sP" kind="relationship" relationship="viewControllers" id="b4U-RK-rdc"/>
                         <segue destination="gv1-JF-PYg" kind="relationship" relationship="viewControllers" id="2kU-1m-WgB"/>
                     </connections>
                 </tabBarController>
@@ -417,9 +418,11 @@
     <resources>
         <image name="gear.png" width="30" height="30"/>
         <image name="house.png" width="30" height="30"/>
-        <image name="ticket.png" width="30" height="30"/>
     </resources>
     <classes>
+        <class className="GamesDetailTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesDetailTableViewController.h"/>
+        </class>
         <class className="GamesTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesTableViewController.h"/>
             <relationships>
@@ -459,9 +462,6 @@
         </class>
         <class className="TabBarViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarViewController.h"/>
-        </class>
-        <class className="TicketsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TicketsViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

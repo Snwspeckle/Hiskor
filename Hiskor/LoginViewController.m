@@ -10,11 +10,6 @@
 #import "Lockbox.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#define kUsernameKeyString          @"UsernameKeyString"
-#define kTokenKeyString             @"TokenKeyString"
-#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
-#define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"
-
 @interface LoginViewController ()
 
 @end
@@ -27,15 +22,6 @@
 	[Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
 
 	[self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -81,7 +67,7 @@
 
 - (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
 	
-	NSLog(@"Email: %@", [response valueForKeyPath:@"email"]);
+	NSLog(@"UserID: %@", [response valueForKeyPath:@"userID"]);
 	NSLog(@"Token: %@", [response valueForKeyPath:@"token"]);
 	NSLog(@"Return Message: %@", [response valueForKeyPath:@"message"]);
 	
@@ -93,12 +79,8 @@
 		
 	} else {
 		
-		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Proper login, thanks!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-		
-		[loginAlert show];
-		
 		// Save username to keychain
-		[Lockbox setString:[response valueForKeyPath:@"email"] forKey:kUsernameKeyString];
+		[Lockbox setString:[response valueForKeyPath:@"userID"] forKey:kUserIDKeyString];
 		
 		// Save token to keychain
 		[Lockbox setString:[response valueForKeyPath:@"token"] forKey:kTokenKeyString];
@@ -119,7 +101,7 @@
 // Keychain Checker Function
 - (IBAction)btnKeychainChecker:(id)sender {
     
-    NSLog(@"Keychain email: %@", [Lockbox stringForKey:kUsernameKeyString]);
+    NSLog(@"Keychain email: %@", [Lockbox stringForKey:kUserIDKeyString]);
     NSLog(@"Keychain token: %@", [Lockbox stringForKey:kTokenKeyString]);
     NSLog(@"Keychain login status: %@", [Lockbox stringForKey:kLoggedinStatusKeyString]);
 

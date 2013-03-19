@@ -9,10 +9,11 @@
 #import "GamesTableViewController.h"
 #import "TabBarViewController.h"
 #import "Lockbox.h"
-
-#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+#import "GamesDetailTableViewController.h"
 
 @interface GamesTableViewController ()
+
+@property (strong, nonatomic) GamesDetailTableViewController *nextViewController;
 
 @end
 
@@ -32,11 +33,51 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.games = [[NSMutableOrderedSet alloc] init];
+	[self refresh];
+}
+
+- (void)refresh {
+	
+	UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+	[self navigationItem].rightBarButtonItem = barButton;
+    [activityIndicator startAnimating];
+	
+	NSLog(@"UserID: %@", [Lockbox stringForKey:kUserIDKeyString]);
+	NSString *userID = [Lockbox stringForKey:kUserIDKeyString];
+	NSString *type = @"clientGames";
+	
+	NSDictionary *parmas = [NSDictionary dictionaryWithObjectsAndKeys:
+							userID, @"userID",
+							type, @"type",
+							nil];
+	
+	[NetworkingManager sendDictionary:parmas responseHandler:self];
+}
+
+- (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
+
+	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		
+	} else {
+
+		[self navigationItem].rightBarButtonItem = nil;
+		
+		NSLog(@"Games recived:");
+		NSLog(@"response: %@", response);
+		
+		[self.games addObjectsFromArray:[response objectForKey:@"games"]];
+	}
+}
+
+- (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
+	NSLog(@"Error with request");
+	NSLog(@"%@", [error localizedDescription]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,16 +90,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.games count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,61 +105,22 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+	NSDictionary *game =  [self.games objectAtIndex:indexPath.row];
+	
+	cell.textLabel.text = [[[game valueForKey:@"homeSchool"] stringByAppendingString:@" vs. "] stringByAppendingString:[game valueForKey:@"awaySchool"]];
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+	self.nextViewController.gameData = [self.games objectAtIndex:indexPath.row];
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"QRTicket"]) {
+		self.nextViewController = [segue destinationViewController];
+	}
 }
 
 - (IBAction)btnLogout:(id)sender {

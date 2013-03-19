@@ -7,6 +7,11 @@
 
 @interface Lockbox : NSObject
 
+#define kUserIDKeyString			@"UserIDKeyString"
+#define kTokenKeyString             @"TokenKeyString"
+#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
+#define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"
+
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key;
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 +(NSString *)stringForKey:(NSString *)key;

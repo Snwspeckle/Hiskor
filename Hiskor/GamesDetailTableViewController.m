@@ -7,6 +7,8 @@
 //
 
 #import "GamesDetailTableViewController.h"
+#import "QRCodeViewController.h"
+#import "Lockbox.h"
 
 @interface GamesDetailTableViewController ()
 
@@ -14,6 +16,7 @@
 
 @implementation GamesDetailTableViewController
 
+/*
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -22,17 +25,50 @@
     }
     return self;
 }
-
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.ticketLoaded = NO;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	//NSLog(@"Ticket: %@", _ticketData);
+	[self refresh];
+	
 }
+
+- (void)refresh {
+	
+	UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+	[self navigationItem].rightBarButtonItem = barButton;
+    [activityIndicator startAnimating];
+	
+	NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:@"clientGameTickets",@"type",[Lockbox stringForKey:kUserIDKeyString],@"userID",[self.gameData objectForKey:@"gameID"], @"gameID", nil];
+	
+	[NetworkingManager sendDictionary:message responseHandler:self];
+}
+
+- (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
+	
+	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid login ID" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		
+	} else {
+		
+		[self navigationItem].rightBarButtonItem = nil;
+		self.ticketLoaded = YES;
+		self.ticketData = [response objectForKey:@"ticket"];
+	}
+}
+
+- (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
+	NSLog(@"Error with request");
+	NSLog(@"%@", [error localizedDescription]);
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -44,24 +80,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"GamesDetailTableViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+	// Customize cell
+	
+	cell.textLabel.text = @"Show QR Code";
+    
     
     return cell;
 }
@@ -109,13 +146,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+	if (indexPath.row == 0 && self.ticketLoaded) {
+		QRCodeViewController *qrCodeViewCOntroller = [[QRCodeViewController alloc] initWithNibName:@"QRCodeView" bundle:nil dataString:self.ticketData];
+		[self presentModalViewController:qrCodeViewCOntroller animated:YES];
+	}
 }
 
 @end

@@ -13,11 +13,6 @@
 #import "Lockbox.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#define kUsernameKeyString          @"UsernameKeyString"
-#define kTokenKeyString             @"TokenKeyString"
-#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
-#define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"
-
 @interface RegisterViewController ()
 
 @end
@@ -94,7 +89,7 @@
                 NSLog(@"Status: %@", [JSON valueForKeyPath:@"status"]);
                 
                 // Save username to keychain
-                [Lockbox setString:[JSON valueForKeyPath:@"username"] forKey:kUsernameKeyString];
+                [Lockbox setString:[JSON valueForKeyPath:@"username"] forKey:kUserIDKeyString];
                 
                 // Save token to keychain
                 [Lockbox setString:[JSON valueForKeyPath:@"token"] forKey:kTokenKeyString];
