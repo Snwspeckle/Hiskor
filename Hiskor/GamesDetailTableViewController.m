@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	self.ticketOwned = NO;
 	self.ticketLoaded = NO;
 
 	//NSLog(@"Ticket: %@", _ticketData);
@@ -43,25 +44,57 @@
 	[self navigationItem].rightBarButtonItem = barButton;
     [activityIndicator startAnimating];
 	
-	NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:@"clientGameTickets",@"type",[Lockbox stringForKey:kUserIDKeyString],@"userID",[self.gameData objectForKey:@"gameID"], @"gameID", nil];
 	
-	[NetworkingManager sendDictionary:message responseHandler:self];
+	NSString *userID = [Lockbox stringForKey:kUserIDKeyString];
+	NSString *type = @"clientGameTickets";
+	NSString *gameID = [self.gameData objectForKey:@"gameID"];
+	
+	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+							userID, @"userID",
+							gameID, @"gameID",
+							type, @"type",
+							nil];
+	
+	[NetworkingManager sendDictionary:params responseHandler:self];
 }
 
 - (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
 	
-	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
+	if ([[response valueForKeyPath:@"message"] isEqualToString:@"None"]) {
 		
-		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid login ID" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		[self navigationItem].rightBarButtonItem = nil;
+
+		NSLog(@"No Ticket Owned:");
+		NSLog(@"Response: %@", response);
+		
+		self.ticketOwned = NO;
+		self.ticketLoaded = YES;
+		self.ticketData = @"";
+		[self.tableView reloadData];
+	}
+	else if ([[response valueForKeyPath:@"message"] isEqualToString:@"Success"]) {
+		
+		[self navigationItem].rightBarButtonItem = nil;
+		
+		NSLog(@"Ticket Loaded");
+		NSLog(@"Response: %@", response);
+		self.ticketOwned = YES;
+		self.ticketLoaded = YES;
+		self.ticketData = [response objectForKey:@"ticket"];
+		[self.tableView reloadData];
+
+	}
+	else {
+		
+		NSLog(@"Ticket Load Failed:");
+		NSLog(@"Response: %@", response);
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Load Failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		
 		[loginAlert show];
 		
-	} else {
-		
-		[self navigationItem].rightBarButtonItem = nil;
-		self.ticketLoaded = YES;
-		self.ticketData = [response objectForKey:@"ticket"];
 	}
+
 }
 
 - (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
@@ -97,8 +130,21 @@
     
 	// Customize cell
 	
-	cell.textLabel.text = @"Show QR Code";
-    
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		if (self.ticketLoaded) {
+			if (self.ticketOwned) {
+				cell.textLabel.text = @"Show QR Code";
+			}
+			else {
+				cell.textLabel.text = @"Buy Ticket";
+			}
+		}
+		else {
+			UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(30, 0, 20, 20)];
+			cell.accessoryView = activityIndicator;
+		}
+		self.showQRCodeCell = cell;
+	}
     
     return cell;
 }
@@ -146,9 +192,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row == 0 && self.ticketLoaded) {
-		QRCodeViewController *qrCodeViewCOntroller = [[QRCodeViewController alloc] initWithNibName:@"QRCodeView" bundle:nil dataString:self.ticketData];
-		[self presentModalViewController:qrCodeViewCOntroller animated:YES];
+	if (indexPath.row == 0 && self.ticketOwned) {
+		if (self.ticketLoaded && self.ticketOwned) {
+			QRCodeViewController *qrCodeViewController = [[QRCodeViewController alloc] initWithNibName:@"QRCodeView" bundle:nil dataString:self.ticketData];
+			[self presentModalViewController:qrCodeViewController animated:YES];
+		}
+		else {
+			
+		}
 	}
 }
 

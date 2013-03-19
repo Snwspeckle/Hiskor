@@ -72,6 +72,7 @@
 		NSLog(@"response: %@", response);
 		
 		[self.games addObjectsFromArray:[response objectForKey:@"games"]];
+		[self.tableView reloadData];
 	}
 }
 

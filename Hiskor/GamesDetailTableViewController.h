@@ -14,5 +14,7 @@
 @property (strong, nonatomic) NSString *ticketData;
 @property (strong, nonatomic) NSDictionary *gameData;
 @property (assign, nonatomic) BOOL ticketLoaded;
+@property (assign, nonatomic) BOOL ticketOwned;
+@property (strong, nonatomic) UITableViewCell *showQRCodeCell;
 
 @end
