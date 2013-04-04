@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "NetworkingManager.h"
+#import "PullRefreshTableViewController.h"
 
-@interface GamesTableViewController : UITableViewController <NetworkingResponseHandler>
+@interface GamesTableViewController : PullRefreshTableViewController <NetworkingResponseHandler>
+{
+	NSMutableArray *items;
+}
 
 - (IBAction)btnLogout:(id)sender;
 - (void)refresh;

@@ -1,49 +1,35 @@
 //
 //  AppDelegate.m
-//  Hiskor
+//  QRCodeEncoderDemo
 //
-//  Created by SuchyMac3 on 1/25/13.
-//  Copyright (c) 2013 ITP. All rights reserved.
+//  Created by Yang Ming-Hsien on 4/21/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "Lockbox.h"
-
-#define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 
 @implementation AppDelegate
 
+@synthesize window = _window;
+@synthesize viewController = _viewController;
+
+- (void)dealloc
+{
+    [_window release];
+    [_viewController release];
+    [super dealloc];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-	
-	// Customization
-    UIImage *navBarImage = [UIImage imageNamed:@"nav-bar.png"];
-    
-    [[UINavigationBar appearance] setBackgroundImage:navBarImage forBarMetrics:UIBarMetricsDefault];
-    
-    UIImage *barButton = [[UIImage imageNamed:@"nav-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
-    
-    [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal
-                                          barMetrics:UIBarMetricsDefault];
-    
-    UIImage *backButton = [[UIImage imageNamed:@"nav-back-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,15,0,6)];
-    
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
-    NSLog(@" %@", [Lockbox stringForKey:kLoggedinStatusKeyString]);
-    
-    // Checks if login status has never been attempted, if not, set the status to FALSE
-    if ([[Lockbox stringForKey:kLoggedinStatusKeyString] length] == 0) {
-        
-        NSString *LoggedinStatusKey = @"FALSE";
-        [Lockbox setString:LoggedinStatusKey forKey:kLoggedinStatusKeyString];
-
-    }
-    
+    self.viewController = [[[QRCodeEncoderDemoViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

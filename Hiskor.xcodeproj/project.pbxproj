@@ -14,8 +14,30 @@
 		44B5E52616CC0B0000F538A5 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E52116CC0B0000F538A5 /* zbar-helpicons.png */; };
 		44B5E52716CC0B0000F538A5 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E52216CC0B0000F538A5 /* zbar-samples.png */; };
 		6E0EF89916E6775D00CF2460 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0EF89816E6775D00CF2460 /* SettingsViewController.m */; };
+		6E3E417316FA23F80075EFE4 /* VerticallyCenteredTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E416D16FA23F80075EFE4 /* VerticallyCenteredTextField.m */; };
+		6E3E417416FA23F80075EFE4 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E416F16FA23F80075EFE4 /* TextInputCell.m */; };
+		6E3E417516FA23F80075EFE4 /* GamesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E417116FA23F80075EFE4 /* GamesTableViewCell.m */; };
+		6E68E26D16FB786300F1A5CD /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E68E26C16FB786300F1A5CD /* PullRefreshTableViewController.m */; };
+		6E68E27116FB7AD600F1A5CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E68E27016FB7AD600F1A5CD /* QuartzCore.framework */; };
+		6E68E27316FB7ADE00F1A5CD /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E68E27216FB7ADE00F1A5CD /* libiconv.dylib */; };
+		6E68E27516FB7AE700F1A5CD /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E68E27416FB7AE700F1A5CD /* CoreVideo.framework */; };
+		6E68E27716FB7AF800F1A5CD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E68E27616FB7AF800F1A5CD /* CoreMedia.framework */; };
+		6E68E27916FB7B0500F1A5CD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E68E27816FB7B0500F1A5CD /* AVFoundation.framework */; };
 		6E9D781616F395E3009B58EF /* QRCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9D781516F395E3009B58EF /* QRCodeView.xib */; };
 		6E9E611416E5254A0050652C /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9E611316E5254A0050652C /* TicketsViewController.m */; };
+		6ED0D79216FA222100F39F1A /* greyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78516FA222100F39F1A /* greyButton.png */; };
+		6ED0D79316FA222100F39F1A /* greyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78616FA222100F39F1A /* greyButton@2x.png */; };
+		6ED0D79416FA222100F39F1A /* greyButton@2xpng in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78716FA222100F39F1A /* greyButton@2xpng */; };
+		6ED0D79516FA222100F39F1A /* greyButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78816FA222100F39F1A /* greyButtonHighlight.png */; };
+		6ED0D79616FA222100F39F1A /* greyButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78916FA222100F39F1A /* greyButtonHighlight@2x.png */; };
+		6ED0D79716FA222100F39F1A /* nav-back-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78A16FA222100F39F1A /* nav-back-button.png */; };
+		6ED0D79816FA222100F39F1A /* nav-back-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78B16FA222100F39F1A /* nav-back-button@2x.png */; };
+		6ED0D79916FA222100F39F1A /* nav-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78C16FA222100F39F1A /* nav-bar.png */; };
+		6ED0D79A16FA222100F39F1A /* nav-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78D16FA222100F39F1A /* nav-bar@2x.png */; };
+		6ED0D79B16FA222100F39F1A /* nav-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78E16FA222100F39F1A /* nav-button.png */; };
+		6ED0D79C16FA222100F39F1A /* nav-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D78F16FA222100F39F1A /* nav-button@2x.png */; };
+		6ED0D79D16FA222100F39F1A /* tasky_pattern_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D79016FA222100F39F1A /* tasky_pattern_@2X.png */; };
+		6ED0D79E16FA222100F39F1A /* tasky_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0D79116FA222100F39F1A /* tasky_pattern.png */; };
 		6EFDB96116F233E60026D74E /* libqrencoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFDB95E16F233D80026D74E /* libqrencoder.a */; };
 		6EFDB96416F2396C0026D74E /* GamesDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDB96316F2396C0026D74E /* GamesDetailTableViewController.m */; };
 		6EFDB96716F243470026D74E /* QRCodeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDB96616F243470026D74E /* QRCodeViewController.mm */; };
@@ -103,9 +125,35 @@
 		44B5E52216CC0B0000F538A5 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
 		6E0EF89716E6775D00CF2460 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6E0EF89816E6775D00CF2460 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		6E3E416D16FA23F80075EFE4 /* VerticallyCenteredTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticallyCenteredTextField.m; sourceTree = "<group>"; };
+		6E3E416E16FA23F80075EFE4 /* VerticallyCenteredTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticallyCenteredTextField.h; sourceTree = "<group>"; };
+		6E3E416F16FA23F80075EFE4 /* TextInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
+		6E3E417016FA23F80075EFE4 /* TextInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputCell.h; sourceTree = "<group>"; };
+		6E3E417116FA23F80075EFE4 /* GamesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesTableViewCell.m; sourceTree = "<group>"; };
+		6E3E417216FA23F80075EFE4 /* GamesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesTableViewCell.h; sourceTree = "<group>"; };
+		6E68E26B16FB786300F1A5CD /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
+		6E68E26C16FB786300F1A5CD /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		6E68E27016FB7AD600F1A5CD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6E68E27216FB7ADE00F1A5CD /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		6E68E27416FB7AE700F1A5CD /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		6E68E27616FB7AF800F1A5CD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		6E68E27816FB7B0500F1A5CD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6E9D781516F395E3009B58EF /* QRCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeView.xib; sourceTree = "<group>"; };
 		6E9E611216E5254A0050652C /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		6E9E611316E5254A0050652C /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		6ED0D78516FA222100F39F1A /* greyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButton.png; sourceTree = "<group>"; };
+		6ED0D78616FA222100F39F1A /* greyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButton@2x.png"; sourceTree = "<group>"; };
+		6ED0D78716FA222100F39F1A /* greyButton@2xpng */ = {isa = PBXFileReference; lastKnownFileType = file; path = "greyButton@2xpng"; sourceTree = "<group>"; };
+		6ED0D78816FA222100F39F1A /* greyButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButtonHighlight.png; sourceTree = "<group>"; };
+		6ED0D78916FA222100F39F1A /* greyButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		6ED0D78A16FA222100F39F1A /* nav-back-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-back-button.png"; sourceTree = "<group>"; };
+		6ED0D78B16FA222100F39F1A /* nav-back-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-back-button@2x.png"; sourceTree = "<group>"; };
+		6ED0D78C16FA222100F39F1A /* nav-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar.png"; sourceTree = "<group>"; };
+		6ED0D78D16FA222100F39F1A /* nav-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar@2x.png"; sourceTree = "<group>"; };
+		6ED0D78E16FA222100F39F1A /* nav-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-button.png"; sourceTree = "<group>"; };
+		6ED0D78F16FA222100F39F1A /* nav-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-button@2x.png"; sourceTree = "<group>"; };
+		6ED0D79016FA222100F39F1A /* tasky_pattern_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tasky_pattern_@2X.png"; sourceTree = "<group>"; };
+		6ED0D79116FA222100F39F1A /* tasky_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tasky_pattern.png; sourceTree = "<group>"; };
 		6EFDB95816F233D80026D74E /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QRCodeEncoderObjectiveCAtGithub.xcodeproj; path = "../../../../Desktop/QR-Code-Encoder-for-Objective-C-master/QRCodeEncoderObjectiveCAtGithub.xcodeproj"; sourceTree = "<group>"; };
 		6EFDB96216F2396C0026D74E /* GamesDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesDetailTableViewController.h; sourceTree = "<group>"; };
 		6EFDB96316F2396C0026D74E /* GamesDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesDetailTableViewController.m; sourceTree = "<group>"; };
@@ -172,13 +220,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E68E27316FB7ADE00F1A5CD /* libiconv.dylib in Frameworks */,
+				6E68E27116FB7AD600F1A5CD /* QuartzCore.framework in Frameworks */,
+				6E68E27516FB7AE700F1A5CD /* CoreVideo.framework in Frameworks */,
+				6E68E27716FB7AF800F1A5CD /* CoreMedia.framework in Frameworks */,
+				6E68E27916FB7B0500F1A5CD /* AVFoundation.framework in Frameworks */,
+				8F7F09AA16B2FAF3005F124D /* CoreGraphics.framework in Frameworks */,
 				6EFDB96116F233E60026D74E /* libqrencoder.a in Frameworks */,
 				9236811D16BA2B6C008384CD /* Security.framework in Frameworks */,
 				8F7F0A0116B30BEB005F124D /* MobileCoreServices.framework in Frameworks */,
 				8F7F09FF16B30BD0005F124D /* SystemConfiguration.framework in Frameworks */,
 				8F7F09A616B2FAF3005F124D /* UIKit.framework in Frameworks */,
 				8F7F09A816B2FAF3005F124D /* Foundation.framework in Frameworks */,
-				8F7F09AA16B2FAF3005F124D /* CoreGraphics.framework in Frameworks */,
 				44B5E52316CC0B0000F538A5 /* libzbar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +303,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		6E3E416A16FA23BD0075EFE4 /* Customized Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E3E416D16FA23F80075EFE4 /* VerticallyCenteredTextField.m */,
+				6E3E416E16FA23F80075EFE4 /* VerticallyCenteredTextField.h */,
+				6E3E416F16FA23F80075EFE4 /* TextInputCell.m */,
+				6E3E417016FA23F80075EFE4 /* TextInputCell.h */,
+				6E3E417116FA23F80075EFE4 /* GamesTableViewCell.m */,
+				6E3E417216FA23F80075EFE4 /* GamesTableViewCell.h */,
+			);
+			name = "Customized Views";
+			sourceTree = "<group>";
+		};
 		6EFDB95916F233D80026D74E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +346,11 @@
 		8F7F09A416B2FAF3005F124D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E68E27816FB7B0500F1A5CD /* AVFoundation.framework */,
+				6E68E27616FB7AF800F1A5CD /* CoreMedia.framework */,
+				6E68E27416FB7AE700F1A5CD /* CoreVideo.framework */,
+				6E68E27216FB7ADE00F1A5CD /* libiconv.dylib */,
+				6E68E27016FB7AD600F1A5CD /* QuartzCore.framework */,
 				6EFDB95816F233D80026D74E /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */,
 				8F7F09E116B30B71005F124D /* AFNetworking */,
 				9236811C16BA2B6C008384CD /* Security.framework */,
@@ -319,6 +390,7 @@
 				6EFDB96516F243470026D74E /* QRCodeViewController.h */,
 				6EFDB96616F243470026D74E /* QRCodeViewController.mm */,
 				6E9D781516F395E3009B58EF /* QRCodeView.xib */,
+				6E3E416A16FA23BD0075EFE4 /* Customized Views */,
 				8F7F09AC16B2FAF3005F124D /* Supporting Files */,
 			);
 			path = Hiskor;
@@ -327,6 +399,8 @@
 		8F7F09AC16B2FAF3005F124D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6E68E26B16FB786300F1A5CD /* PullRefreshTableViewController.h */,
+				6E68E26C16FB786300F1A5CD /* PullRefreshTableViewController.m */,
 				8F7F09D716B3032F005F124D /* Images */,
 				8F7F09AD16B2FAF3005F124D /* Hiskor-Info.plist */,
 				8F7F09AE16B2FAF3005F124D /* InfoPlist.strings */,
@@ -342,6 +416,19 @@
 		8F7F09D716B3032F005F124D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6ED0D78516FA222100F39F1A /* greyButton.png */,
+				6ED0D78616FA222100F39F1A /* greyButton@2x.png */,
+				6ED0D78716FA222100F39F1A /* greyButton@2xpng */,
+				6ED0D78816FA222100F39F1A /* greyButtonHighlight.png */,
+				6ED0D78916FA222100F39F1A /* greyButtonHighlight@2x.png */,
+				6ED0D78A16FA222100F39F1A /* nav-back-button.png */,
+				6ED0D78B16FA222100F39F1A /* nav-back-button@2x.png */,
+				6ED0D78C16FA222100F39F1A /* nav-bar.png */,
+				6ED0D78D16FA222100F39F1A /* nav-bar@2x.png */,
+				6ED0D78E16FA222100F39F1A /* nav-button.png */,
+				6ED0D78F16FA222100F39F1A /* nav-button@2x.png */,
+				6ED0D79016FA222100F39F1A /* tasky_pattern_@2X.png */,
+				6ED0D79116FA222100F39F1A /* tasky_pattern.png */,
 				8F7F09DF16B30422005F124D /* house.png */,
 				8F7F09D916B30348005F124D /* gear.png */,
 				8F7F09DA16B30348005F124D /* ticket.png */,
@@ -473,6 +560,19 @@
 				44B5E52616CC0B0000F538A5 /* zbar-helpicons.png in Resources */,
 				44B5E52716CC0B0000F538A5 /* zbar-samples.png in Resources */,
 				6E9D781616F395E3009B58EF /* QRCodeView.xib in Resources */,
+				6ED0D79216FA222100F39F1A /* greyButton.png in Resources */,
+				6ED0D79316FA222100F39F1A /* greyButton@2x.png in Resources */,
+				6ED0D79416FA222100F39F1A /* greyButton@2xpng in Resources */,
+				6ED0D79516FA222100F39F1A /* greyButtonHighlight.png in Resources */,
+				6ED0D79616FA222100F39F1A /* greyButtonHighlight@2x.png in Resources */,
+				6ED0D79716FA222100F39F1A /* nav-back-button.png in Resources */,
+				6ED0D79816FA222100F39F1A /* nav-back-button@2x.png in Resources */,
+				6ED0D79916FA222100F39F1A /* nav-bar.png in Resources */,
+				6ED0D79A16FA222100F39F1A /* nav-bar@2x.png in Resources */,
+				6ED0D79B16FA222100F39F1A /* nav-button.png in Resources */,
+				6ED0D79C16FA222100F39F1A /* nav-button@2x.png in Resources */,
+				6ED0D79D16FA222100F39F1A /* tasky_pattern_@2X.png in Resources */,
+				6ED0D79E16FA222100F39F1A /* tasky_pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +604,10 @@
 				6E0EF89916E6775D00CF2460 /* SettingsViewController.m in Sources */,
 				6EFDB96416F2396C0026D74E /* GamesDetailTableViewController.m in Sources */,
 				6EFDB96716F243470026D74E /* QRCodeViewController.mm in Sources */,
+				6E3E417316FA23F80075EFE4 /* VerticallyCenteredTextField.m in Sources */,
+				6E3E417416FA23F80075EFE4 /* TextInputCell.m in Sources */,
+				6E3E417516FA23F80075EFE4 /* GamesTableViewCell.m in Sources */,
+				6E68E26D16FB786300F1A5CD /* PullRefreshTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

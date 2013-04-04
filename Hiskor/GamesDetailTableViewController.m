@@ -31,13 +31,30 @@
     [super viewDidLoad];
 	self.ticketOwned = NO;
 	self.ticketLoaded = NO;
-
+	self.navigationItem.title = [[[self.gameData valueForKey:@"homeSchool"] stringByAppendingString:@" vs. "] stringByAppendingString:[self.gameData valueForKey:@"awaySchool"]];
+	//self.navigationItem.backBarButtonItem.
 	//NSLog(@"Ticket: %@", _ticketData);
-	[self refresh];
+	[self loadTicket];
 	
 }
 
-- (void)refresh {
+- (void)loadTicket {
+	
+	NSString *userID = [Lockbox stringForKey:kUserIDKeyString];
+	NSString *type = @"clientGameTickets";
+	NSString *gameID = [self.gameData objectForKey:@"gameID"];
+	
+	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+							userID, @"userID",
+							gameID, @"gameID",
+							type, @"type",
+							nil];
+	
+	[NetworkingManager sendDictionary:params responseHandler:self];
+
+}
+
+/*- (void)refresh {
 	
 	UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
@@ -56,7 +73,7 @@
 							nil];
 	
 	[NetworkingManager sendDictionary:params responseHandler:self];
-}
+}*/
 
 - (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
 	
@@ -89,7 +106,7 @@
 		NSLog(@"Ticket Load Failed:");
 		NSLog(@"Response: %@", response);
 		
-		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Load Failed" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:@"Server denied request" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		
 		[loginAlert show];
 		
@@ -98,6 +115,12 @@
 }
 
 - (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
+	
+	
+	UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+	
+	[loginAlert show];
+	
 	NSLog(@"Error with request");
 	NSLog(@"%@", [error localizedDescription]);
 }
