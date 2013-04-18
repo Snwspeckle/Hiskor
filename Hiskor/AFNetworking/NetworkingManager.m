@@ -11,6 +11,8 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFJSONRequestOperation.h"
 
+#define SERVER_ADDRESS @"http://192.168.0.103/Hiskor_Admin_New"
+
 @implementation NetworkingManager
 
 + (void)sendDictionary:(NSDictionary *)dictionary responseHandler:(id<NetworkingResponseHandler>)responseHandler {
@@ -18,7 +20,7 @@
 	NSDictionary *message = [dictionary copy];
 		
 	// Sends request to server to login, server sends response via JSON
-    NSURL *url = [NSURL URLWithString:@"http://192.168.0.100/Hiskor_Admin"];
+    NSURL *url = [NSURL URLWithString:SERVER_ADDRESS];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"api.php" parameters:message];
     

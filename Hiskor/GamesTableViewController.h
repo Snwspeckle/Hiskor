@@ -10,7 +10,7 @@
 #import "NetworkingManager.h"
 #import "PullRefreshTableViewController.h"
 
-@interface GamesTableViewController : PullRefreshTableViewController <NetworkingResponseHandler>
+@interface GamesTableViewController : PullRefreshTableViewController
 {
 	NSMutableArray *items;
 }
