@@ -371,8 +371,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="3N0-xb-0pY" kind="relationship" relationship="viewControllers" id="rLN-P3-8OZ"/>
-                        <segue destination="gv1-JF-PYg" kind="relationship" relationship="viewControllers" id="2kU-1m-WgB"/>
+                        <segue destination="3N0-xb-0pY" kind="relationship" relationship="viewControllers" id="aWz-5h-on4"/>
+                        <segue destination="gv1-JF-PYg" kind="relationship" relationship="viewControllers" id="QKl-pu-TRh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -395,7 +395,7 @@
                 <relationship kind="outlet" name="homeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="GamesTableViewController" superclassName="UITableViewController">
+        <class className="GamesTableViewController" superclassName="PullRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="btnLogout:"/>
@@ -411,6 +411,9 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PullRefreshTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
         </class>
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>

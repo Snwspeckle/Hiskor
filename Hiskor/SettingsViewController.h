@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingManager.h"
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController <NetworkingResponseHandler>
 
 - (IBAction)btnLogout:(id)sender;
 @property (nonatomic, assign) BOOL animateBOOL;

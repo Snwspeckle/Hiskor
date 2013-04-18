@@ -29,13 +29,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.ticketOwned = NO;
-	self.ticketLoaded = NO;
-	self.navigationItem.title = [[[self.gameData valueForKey:@"homeSchool"] stringByAppendingString:@" vs. "] stringByAppendingString:[self.gameData valueForKey:@"awaySchool"]];
-	//self.navigationItem.backBarButtonItem.
-	//NSLog(@"Ticket: %@", _ticketData);
-	[self loadTicket];
-	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+}
+
+- (void)setGameData:(NSDictionary *)gameData {
+	if (gameData != _gameData) {
+		_gameData = gameData;
+		
+		self.ticketOwned = NO;
+		self.ticketLoaded = NO;
+		
+		self.navigationItem.title = [[[self.gameData valueForKey:@"homeSchool"] stringByAppendingString:@" vs. "] stringByAppendingString:[self.gameData valueForKey:@"awaySchool"]];
+		
+		[self loadTicket];
+	}
 }
 
 - (void)loadTicket {
@@ -43,13 +53,12 @@
 	NSString *userID = [Lockbox stringForKey:kUserIDKeyString];
 	NSString *type = @"clientGameTickets";
 	NSString *gameID = [self.gameData objectForKey:@"gameID"];
-	
 	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
 							userID, @"userID",
 							gameID, @"gameID",
 							type, @"type",
 							nil];
-	
+
 	[NetworkingManager sendDictionary:params responseHandler:self];
 
 }

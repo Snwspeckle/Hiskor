@@ -32,14 +32,16 @@
 	/*if ([[Lockbox stringForKey:@"LoggedinStatusKeyString"] isEqualToString:@"TRUE"]) {
         [self loadGames];
     }*/
+	
+	[self startLoading];
+
 	[self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+/*- (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[self startLoading];
-}
+}*/
 
 - (void)loadGames {
 	NSLog(@"UserID: %@", [Lockbox stringForKey:kUserIDKeyString]);
