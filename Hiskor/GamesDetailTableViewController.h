@@ -15,6 +15,14 @@
 @property (strong, nonatomic) NSDictionary *gameData;
 @property (assign, nonatomic) BOOL ticketLoaded;
 @property (assign, nonatomic) BOOL ticketOwned;
-@property (strong, nonatomic) UITableViewCell *showQRCodeCell;
+
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) IBOutlet UILabel *ticketLabel;
+
+@property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *homeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *awayLabel;
+@property (nonatomic, strong) IBOutlet UILabel *ticketsLeftLabel;
 
 @end

@@ -39,16 +39,38 @@
 	if (gameData != _gameData) {
 		_gameData = gameData;
 		
-		self.ticketOwned = NO;
-		self.ticketLoaded = NO;
-		
 		self.navigationItem.title = [[[self.gameData valueForKey:@"homeSchool"] stringByAppendingString:@" vs. "] stringByAppendingString:[self.gameData valueForKey:@"awaySchool"]];
 		
 		[self loadTicket];
+		
+		NSString *dateString = [self.gameData valueForKey:@"gameDate"];
+		
+		NSDate *date = [NSDate dateWithTimeIntervalSince1970:[dateString longLongValue]];
+		
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+		
+		self.dateLabel.text = [dateFormatter stringFromDate:date];
+		
+		NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+		[timeFormatter setDateStyle:NSDateFormatterNoStyle];
+		[timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+		
+		self.timeLabel.text = [timeFormatter stringFromDate:date];
+		
+		self.homeLabel.text = [self.gameData valueForKey:@"homeSchool"];
+		self.awayLabel.text = [self.gameData valueForKey:@"awaySchool"];
+		self.ticketsLeftLabel.text = [self.gameData valueForKey:@"numberOfTickets"];
 	}
 }
 
 - (void)loadTicket {
+	
+	self.ticketOwned = NO;
+	self.ticketLoaded = NO;
+	
+	[self.activityIndicator startAnimating];
 	
 	NSString *userID = [Lockbox stringForKey:kUserIDKeyString];
 	NSString *type = @"clientGameTickets";
@@ -86,6 +108,8 @@
 
 - (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
 	
+	[self.activityIndicator stopAnimating];
+
 	if ([[response valueForKeyPath:@"message"] isEqualToString:@"None"]) {
 		
 		[self navigationItem].rightBarButtonItem = nil;
@@ -96,7 +120,12 @@
 		self.ticketOwned = NO;
 		self.ticketLoaded = YES;
 		self.ticketData = @"";
-		[self.tableView reloadData];
+		if ([self.gameData objectForKey:@"numberOfTickets"] > 0) {
+			self.ticketLabel.text = @"Purchase Ticket";
+		}
+		else {
+			self.ticketLabel.text = @"Sold Out";
+		}
 	}
 	else if ([[response valueForKeyPath:@"message"] isEqualToString:@"Success"]) {
 		
@@ -107,11 +136,16 @@
 		self.ticketOwned = YES;
 		self.ticketLoaded = YES;
 		self.ticketData = [response objectForKey:@"ticket"];
-		[self.tableView reloadData];
+		self.ticketLabel.text = @"Show Ticket";
 
 	}
 	else {
 		
+		if ([self.ticketLabel.text isEqualToString:@""] || [self.ticketLabel.text isEqualToString:@"Loading..."]) {
+			
+			self.ticketLabel.text = @"Ticket Not Loaded";
+		}
+
 		NSLog(@"Ticket Load Failed:");
 		NSLog(@"Response: %@", response);
 		
@@ -125,6 +159,11 @@
 
 - (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
 	
+	[self.activityIndicator stopAnimating];
+	
+	if ([self.ticketLabel.text isEqualToString:@""] || [self.ticketLabel.text isEqualToString:@"Loading..."]) {
+		self.ticketLabel.text = @"Ticket Not Loaded";
+	}
 	
 	UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 	
@@ -141,6 +180,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -175,13 +215,11 @@
 			UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(30, 0, 20, 20)];
 			cell.accessoryView = activityIndicator;
 		}
-		self.showQRCodeCell = cell;
 	}
     
     return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -224,7 +262,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row == 0 && self.ticketOwned) {
+	if (indexPath.section == 0 && indexPath.row == 0 && self.ticketOwned) {
 		if (self.ticketLoaded && self.ticketOwned) {
 			QRCodeViewController *qrCodeViewController = [[QRCodeViewController alloc] initWithNibName:@"QRCodeView" bundle:nil dataString:self.ticketData];
 			[self presentModalViewController:qrCodeViewController animated:YES];

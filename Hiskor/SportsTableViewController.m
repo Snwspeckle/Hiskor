@@ -7,6 +7,7 @@
 //
 
 #import "SportsTableViewController.h"
+#import "SportsTableViewCell.h"
 
 @interface SportsTableViewController ()
 
@@ -27,11 +28,9 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.sports = [[NSMutableArray alloc] initWithObjects:@"Baseball", @"Basketball", @"Football", @"Volleyball", @"Wrestling", nil];
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	//self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,55 +38,86 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+/*
+#pragma mark - NetworkingResponseHandler Protocol Methods
+
+- (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
+	
+	[self.sports stopLoading];
+	
+	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Success"]) {
+		
+		NSLog(@"Games recived:");
+		NSLog(@"response: %@", response);
+		
+		self.sports = [[response objectForKey:@"games"] mutableCopy];
+		
+	}
+	else {
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:@"Server denied request" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		
+	}
+}
+
+- (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
+		
+	UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+	[loginAlert show];
+	
+	NSLog(@"Error with request");
+	NSLog(@"%@", [error localizedDescription]);
+}
+*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	
+	self.nextViewController = [segue destinationViewController];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.sports count];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = [UIColor colorWithRed:.90 green:.90 blue:.90 alpha:1];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"SportsTableViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+	
+	((SportsTableViewCell *)cell).sportLabel.text = [self.sports objectAtIndex:indexPath.row];
+	
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	return 1;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	
+	UIView *view = nil;
+	if (section >= [self numberOfSectionsInTableView:tableView] - 1) {
+		view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+		view.backgroundColor = [UIColor whiteColor];
+	}
+    return view;
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -109,13 +139,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+	self.nextViewController.sportType = [self.sports objectAtIndex:indexPath.row];
 }
 
 @end

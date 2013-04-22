@@ -10,15 +10,13 @@
 #import "NetworkingManager.h"
 #import "PullRefreshTableViewController.h"
 
-@interface GamesTableViewController : PullRefreshTableViewController
-{
-	NSMutableArray *items;
-}
-
-- (IBAction)btnLogout:(id)sender;
-- (void)refresh;
+@interface GamesTableViewController : PullRefreshTableViewController <NetworkingResponseHandler>
 
 @property (nonatomic, assign) BOOL animateBOOL;
 @property (strong, nonatomic) NSMutableOrderedSet *games;
+@property (nonatomic, strong) NSString *sportType;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
+- (void)reloadTable;
 
 @end

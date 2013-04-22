@@ -11,7 +11,8 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFJSONRequestOperation.h"
 
-#define SERVER_ADDRESS @"http://192.168.0.103/Hiskor_Admin_New"
+//#define SERVER_ADDRESS @"http://192.168.0.111/Hiskor_Admin_New"
+#define SERVER_ADDRESS @"http://192.168.2.122/Hiskor_Admin_New"
 
 @implementation NetworkingManager
 

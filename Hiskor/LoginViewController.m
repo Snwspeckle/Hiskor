@@ -10,6 +10,7 @@
 #import "Lockbox.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "TextInputCell.h"
+#import "GamesTableViewController.h"
 
 @interface LoginViewController ()
 
@@ -25,7 +26,7 @@
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"tasky_pattern.png"]];
 	
 	// Creates the login form
-    mainLoginInfo  = [[UITableView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 300) / 2,110, 300,150) style:UITableViewStyleGrouped];
+    mainLoginInfo  = [[UITableView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 300) / 2, 110, 300, 150) style:UITableViewStyleGrouped];
     mainLoginInfo.dataSource = self;
     mainLoginInfo.delegate = self;
     [self.view addSubview:mainLoginInfo];
@@ -62,10 +63,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == usernameField) {
@@ -138,9 +135,7 @@
     TextInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    // Configure the cell...
-    
+    }    
     
     tableView.separatorStyle= UITableViewCellSeparatorStyleSingleLine;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -155,8 +150,8 @@
             usernameField.clearButtonMode  = UITextFieldViewModeWhileEditing;
             usernameField.font = [UIFont fontWithName:@"Helvetica" size:16.0];
             usernameField.keyboardType = UIKeyboardTypeEmailAddress;
+			usernameField.returnKeyType = UIReturnKeyNext;
             usernameField.delegate = self;
-			usernameField.keyboardType = UIKeyboardTypeEmailAddress;
             [cell.contentView addSubview:usernameField];
             break;
         case 1:
@@ -184,14 +179,8 @@
 	NSLog(@"Token: %@", [response valueForKeyPath:@"token"]);
 	NSLog(@"Return Message: %@", [response valueForKeyPath:@"message"]);
 	
-	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Failed"]) {
-		
-		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error logging in" message:@"Invalid email or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-		
-		[loginAlert show];
-		
-	} else {
-		
+	if ([[response valueForKeyPath:@"message"] isEqualToString:@"Success"]) {
+				
 		// Save username to keychain
 		[Lockbox setString:[response valueForKeyPath:@"userID"] forKey:kUserIDKeyString];
 		
@@ -201,9 +190,14 @@
 		// Save login status to keychain
 		[Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
 		
-		((UITabBarController *)self.presentingViewController).selectedIndex = 0;
-		
+		[(UITabBarController *)self.presentingViewController setSelectedIndex:0];
+		[[[(UITabBarController *)self.presentingViewController viewControllers] objectAtIndex:0] popToRootViewControllerAnimated:NO];
 		[self dismissViewControllerAnimated:YES completion:nil];
+	}
+	else {
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Logging In" message:@"Invalid email or password" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
 	}
 }
 

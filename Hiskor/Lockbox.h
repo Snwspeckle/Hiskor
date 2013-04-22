@@ -8,6 +8,7 @@
 @interface Lockbox : NSObject
 
 #define kUserIDKeyString			@"UserIDKeyString"
+#define kUserIDKeyStringLoggedOut	@"-1"
 #define kTokenKeyString             @"TokenKeyString"
 #define kLoggedinStatusKeyString    @"LoggedinStatusKeyString"
 #define salt                        @"FSF^D&*FH#RJNF@!$JH#@$"

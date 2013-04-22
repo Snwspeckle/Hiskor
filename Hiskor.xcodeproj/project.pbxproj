@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		440EB4B116D69AD30090DC36 /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EB4B016D69AD30090DC36 /* NetworkingManager.m */; };
 		443B9EAF1715CE990002B633 /* libqrencoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 443B9EAA171486270002B633 /* libqrencoder.a */; };
+		443B9EB517245DFD0002B633 /* SportsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B9EB417245DFD0002B633 /* SportsTableViewController.m */; };
+		443B9EB817245F580002B633 /* SportsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B9EB717245F580002B633 /* SportsTableViewCell.m */; };
+		443B9EBB1724785E0002B633 /* HomeGamesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 443B9EBA1724785E0002B633 /* HomeGamesTableViewController.m */; };
 		44B5E52316CC0B0000F538A5 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B5E51D16CC0B0000F538A5 /* libzbar.a */; };
 		44B5E52416CC0B0000F538A5 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E51F16CC0B0000F538A5 /* zbar-back.png */; };
 		44B5E52516CC0B0000F538A5 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 44B5E52016CC0B0000F538A5 /* zbar-help.html */; };
@@ -106,6 +109,12 @@
 		440EB4AF16D69AD30090DC36 /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkingManager.h; path = AFNetworking/NetworkingManager.h; sourceTree = "<group>"; };
 		440EB4B016D69AD30090DC36 /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkingManager.m; path = AFNetworking/NetworkingManager.m; sourceTree = "<group>"; };
 		443B9EA4171486270002B633 /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QRCodeEncoderObjectiveCAtGithub.xcodeproj; path = "QR-Code-Encoder-for-Objective-C-master/QRCodeEncoderObjectiveCAtGithub.xcodeproj"; sourceTree = "<group>"; };
+		443B9EB317245DFD0002B633 /* SportsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportsTableViewController.h; sourceTree = "<group>"; };
+		443B9EB417245DFD0002B633 /* SportsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportsTableViewController.m; sourceTree = "<group>"; };
+		443B9EB617245F580002B633 /* SportsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportsTableViewCell.h; sourceTree = "<group>"; };
+		443B9EB717245F580002B633 /* SportsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportsTableViewCell.m; sourceTree = "<group>"; };
+		443B9EB91724785D0002B633 /* HomeGamesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGamesTableViewController.h; sourceTree = "<group>"; };
+		443B9EBA1724785E0002B633 /* HomeGamesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGamesTableViewController.m; sourceTree = "<group>"; };
 		44B5E50916CC0B0000F538A5 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		44B5E50A16CC0B0000F538A5 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		44B5E50B16CC0B0000F538A5 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -322,12 +331,14 @@
 		6E3E416A16FA23BD0075EFE4 /* Customized Views */ = {
 			isa = PBXGroup;
 			children = (
-				6E3E416D16FA23F80075EFE4 /* VerticallyCenteredTextField.m */,
 				6E3E416E16FA23F80075EFE4 /* VerticallyCenteredTextField.h */,
-				6E3E416F16FA23F80075EFE4 /* TextInputCell.m */,
+				6E3E416D16FA23F80075EFE4 /* VerticallyCenteredTextField.m */,
 				6E3E417016FA23F80075EFE4 /* TextInputCell.h */,
-				6E3E417116FA23F80075EFE4 /* GamesTableViewCell.m */,
+				6E3E416F16FA23F80075EFE4 /* TextInputCell.m */,
 				6E3E417216FA23F80075EFE4 /* GamesTableViewCell.h */,
+				6E3E417116FA23F80075EFE4 /* GamesTableViewCell.m */,
+				443B9EB617245F580002B633 /* SportsTableViewCell.h */,
+				443B9EB717245F580002B633 /* SportsTableViewCell.m */,
 			);
 			name = "Customized Views";
 			sourceTree = "<group>";
@@ -378,20 +389,24 @@
 				8F7F09B416B2FAF3005F124D /* AppDelegate.h */,
 				8F7F09B516B2FAF3005F124D /* AppDelegate.m */,
 				8F7F09BD16B2FAF3005F124D /* MainStoryboard.storyboard */,
+				440EB4AF16D69AD30090DC36 /* NetworkingManager.h */,
+				440EB4B016D69AD30090DC36 /* NetworkingManager.m */,
 				6E9E611216E5254A0050652C /* TicketsViewController.h */,
 				6E9E611316E5254A0050652C /* TicketsViewController.m */,
 				8F4EE5D516B84181003F6C74 /* LoginViewController.h */,
 				8F4EE5D616B84181003F6C74 /* LoginViewController.m */,
-				440EB4AF16D69AD30090DC36 /* NetworkingManager.h */,
-				440EB4B016D69AD30090DC36 /* NetworkingManager.m */,
 				9236810E16B9E91E008384CD /* RegisterViewController.h */,
 				9236810F16B9E91E008384CD /* RegisterViewController.m */,
 				8F4EE5D916B845AA003F6C74 /* TabBarViewController.h */,
 				8F4EE5DA16B845AA003F6C74 /* TabBarViewController.m */,
 				6E0EF89716E6775D00CF2460 /* SettingsViewController.h */,
 				6E0EF89816E6775D00CF2460 /* SettingsViewController.m */,
+				443B9EB317245DFD0002B633 /* SportsTableViewController.h */,
+				443B9EB417245DFD0002B633 /* SportsTableViewController.m */,
 				92AD11D616BC32CD0090C148 /* GamesTableViewController.h */,
 				92AD11D716BC32CD0090C148 /* GamesTableViewController.m */,
+				443B9EB91724785D0002B633 /* HomeGamesTableViewController.h */,
+				443B9EBA1724785E0002B633 /* HomeGamesTableViewController.m */,
 				6EFDB96216F2396C0026D74E /* GamesDetailTableViewController.h */,
 				6EFDB96316F2396C0026D74E /* GamesDetailTableViewController.m */,
 				6EFDB96516F243470026D74E /* QRCodeViewController.h */,
@@ -616,6 +631,9 @@
 				6E3E417416FA23F80075EFE4 /* TextInputCell.m in Sources */,
 				6E3E417516FA23F80075EFE4 /* GamesTableViewCell.m in Sources */,
 				6E68E26D16FB786300F1A5CD /* PullRefreshTableViewController.m in Sources */,
+				443B9EB517245DFD0002B633 /* SportsTableViewController.m in Sources */,
+				443B9EB817245F580002B633 /* SportsTableViewCell.m in Sources */,
+				443B9EBB1724785E0002B633 /* HomeGamesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

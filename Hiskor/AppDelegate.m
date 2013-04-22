@@ -15,7 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	// Initalize defaults for first run
+	if (![[NSUserDefaults standardUserDefaults] objectForKey:@"stayLoggedInPreference"]) {
+		
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"stayLoggedInPreference"];
+	}
 	
 	// Customization
     UIImage *navBarImage = [UIImage imageNamed:@"nav-bar.png"];
@@ -34,11 +38,11 @@
     NSLog(@" %@", [Lockbox stringForKey:kLoggedinStatusKeyString]);
     
     // Checks if login status has never been attempted, if not, set the status to FALSE
-    if ([[Lockbox stringForKey:kLoggedinStatusKeyString] length] == 0) {
+    if ([[Lockbox stringForKey:kLoggedinStatusKeyString] length] == 0 || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"stayLoggedInPreference"] boolValue]) {
         
-        NSString *LoggedinStatusKey = @"FALSE";
-        [Lockbox setString:LoggedinStatusKey forKey:kLoggedinStatusKeyString];
-
+        [Lockbox setString:@"FALSE" forKey:kLoggedinStatusKeyString];
+		[Lockbox setString:@"" forKey:kUserIDKeyString];
+		[Lockbox setString:@"" forKey:kTokenKeyString];
     }
     
     return YES;
@@ -68,7 +72,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	if ([[Lockbox stringForKey:kLoggedinStatusKeyString] length] == 0 || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"stayLoggedInPreference"] boolValue]) {
+        
+        
+        [Lockbox setString:@"FALSE" forKey:kLoggedinStatusKeyString];
+		[Lockbox setString:@"" forKey:kUserIDKeyString];
+		[Lockbox setString:@"" forKey:kTokenKeyString];
+    }
 }
 
 @end

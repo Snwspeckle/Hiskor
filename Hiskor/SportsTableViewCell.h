@@ -10,4 +10,6 @@
 
 @interface SportsTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *sportLabel;
+
 @end

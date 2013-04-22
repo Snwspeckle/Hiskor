@@ -7,15 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingManager.h"
+#import "TextInputCell.h"
+@interface RegisterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NetworkingResponseHandler, UITextFieldDelegate>
 
-@interface RegisterViewController : UIViewController
 - (IBAction)btnCancel:(id)sender;
 - (IBAction)btnRegister:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *confirm_emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UITextField *confirm_passwordField;
+@property (nonatomic, assign) BOOL shouldScrollToTop;
+
+@property (nonatomic, weak) IBOutlet UIButton *registerButton;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic, strong) UITableView *inputTableView;
+@property (strong, nonatomic) TextInputCell *firstNameCell;
+@property (strong, nonatomic) TextInputCell *lastNameCell;
+@property (strong, nonatomic) TextInputCell *emailCell;
+@property (strong, nonatomic) TextInputCell *confirmEmailCell;
+@property (strong, nonatomic) TextInputCell *passwordCell;
+@property (strong, nonatomic) TextInputCell *confirmPasswordCell;
 
 @end

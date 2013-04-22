@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "NetworkingManager.h"
 
-@interface SettingsViewController : UITableViewController <NetworkingResponseHandler>
+@interface SettingsViewController : UITableViewController <NetworkingResponseHandler, UIPickerViewDelegate, UIPickerViewDataSource>
 
 - (IBAction)btnLogout:(id)sender;
-@property (nonatomic, assign) BOOL animateBOOL;
+
+- (IBAction)stayLoggedInSwitchChanged;
+
+@property (nonatomic, assign) BOOL schoolsLoaded;
+@property (nonatomic, strong) IBOutlet UISwitch *stayLoggedInSwitch;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIPickerView *pickerView;
+
+@property (nonatomic, strong) NSMutableArray *schools;
 
 @end

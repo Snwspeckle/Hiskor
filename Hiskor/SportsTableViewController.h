@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkingManager.h"
+#import "GamesTableViewController.h"
 
-@interface SportsTableViewController : UITableViewController
+@interface SportsTableViewController : UITableViewController //<NetworkingResponseHandler>
 
+@property (nonatomic, strong) NSMutableArray *sports;
+@property (nonatomic, strong) GamesTableViewController *nextViewController;
 @end
