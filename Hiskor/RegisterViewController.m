@@ -205,11 +205,12 @@
 #pragma mark - NetworkingResponseHandler Protocol Methods
 
 - (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
-	
-	NSLog(@"Email: %@", [response valueForKeyPath:@"email"]);
-	NSLog(@"Status: %@", [response valueForKeyPath:@"status"]);
 
 	if ([[message objectForKey:@"type"] isEqualToString:@"register"]) {
+		
+		NSLog(@"Email: %@", [response valueForKeyPath:@"email"]);
+		NSLog(@"Status: %@", [response valueForKeyPath:@"status"]);
+		
 		if ([[response objectForKey:@"status"] isEqualToString:@"Registration Passed"]) {
 			
 			NSString *type = @"login";
@@ -229,19 +230,20 @@
 		}
 	}
 	else if ([[message objectForKey:@"type"] isEqualToString:@"login"]) {
+		
+		NSLog(@"UserID: %@", [response valueForKeyPath:@"userID"]);
+		NSLog(@"Message: %@", [response valueForKeyPath:@"message"]);
+		
 		if ([[response objectForKey:@"message"] isEqualToString:@"Success"]) {
 			
-			// Save username to keychain
-			[Lockbox setString:[response valueForKeyPath:@"username"] forKey:kUserIDKeyString];
-			
-			// Save token to keychain
+			[Lockbox setString:[response valueForKeyPath:@"userID"] forKey:kUserIDKeyString];
 			[Lockbox setString:[response valueForKeyPath:@"token"] forKey:kTokenKeyString];
-			
-			// Save login status to keychain
 			[Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
 			
 			[self.activityIndicator stopAnimating];
 			
+			[(UITabBarController *)self.presentingViewController.presentingViewController setSelectedIndex:0];
+			[[[(UITabBarController *)self.presentingViewController.presentingViewController viewControllers] objectAtIndex:0] popToRootViewControllerAnimated:NO];
 			[self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 		}
 		else {
