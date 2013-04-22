@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NetworkingManager.h"
 
-@interface GamesDetailTableViewController : UITableViewController <NetworkingResponseHandler>
+@interface GamesDetailTableViewController : UITableViewController <NetworkingResponseHandler, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *ticketData;
 @property (strong, nonatomic) NSDictionary *gameData;

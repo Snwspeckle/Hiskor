@@ -16,25 +16,6 @@
 
 @implementation GamesDetailTableViewController
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-}
-
 - (void)setGameData:(NSDictionary *)gameData {
 	if (gameData != _gameData) {
 		_gameData = gameData;
@@ -43,26 +24,31 @@
 		
 		[self loadTicket];
 		
-		NSString *dateString = [self.gameData valueForKey:@"gameDate"];
-		
-		NSDate *date = [NSDate dateWithTimeIntervalSince1970:[dateString longLongValue]];
-		
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-		
-		self.dateLabel.text = [dateFormatter stringFromDate:date];
-		
-		NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-		[timeFormatter setDateStyle:NSDateFormatterNoStyle];
-		[timeFormatter setTimeStyle:NSDateFormatterShortStyle];
-		
-		self.timeLabel.text = [timeFormatter stringFromDate:date];
-		
-		self.homeLabel.text = [self.gameData valueForKey:@"homeSchool"];
-		self.awayLabel.text = [self.gameData valueForKey:@"awaySchool"];
-		self.ticketsLeftLabel.text = [self.gameData valueForKey:@"numberOfTickets"];
+		[self reloadData];
 	}
+}
+
+- (void)reloadData {
+	
+	NSString *dateString = [self.gameData valueForKey:@"gameDate"];
+	
+	NSDate *date = [NSDate dateWithTimeIntervalSince1970:[dateString longLongValue]];
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	
+	self.dateLabel.text = [dateFormatter stringFromDate:date];
+	
+	NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+	[timeFormatter setDateStyle:NSDateFormatterNoStyle];
+	[timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+	
+	self.timeLabel.text = [timeFormatter stringFromDate:date];
+	
+	self.homeLabel.text = [self.gameData valueForKey:@"homeSchool"];
+	self.awayLabel.text = [self.gameData valueForKey:@"awaySchool"];
+	self.ticketsLeftLabel.text = [self.gameData valueForKey:@"numberOfTickets"];
 }
 
 - (void)loadTicket {
@@ -109,52 +95,83 @@
 - (void)networkingResponseReceived:(id)response ForMessage:(NSDictionary *)message {
 	
 	[self.activityIndicator stopAnimating];
-
-	if ([[response valueForKeyPath:@"message"] isEqualToString:@"None"]) {
-		
-		[self navigationItem].rightBarButtonItem = nil;
-
-		NSLog(@"No Ticket Owned:");
-		NSLog(@"Response: %@", response);
-		
-		self.ticketOwned = NO;
-		self.ticketLoaded = YES;
-		self.ticketData = @"";
-		if ([self.gameData objectForKey:@"numberOfTickets"] > 0) {
-			self.ticketLabel.text = @"Purchase Ticket";
+	
+	if ([[message objectForKey:@"type"] isEqualToString:@"clientGameTickets"]) {
+		if ([[response valueForKeyPath:@"message"] isEqualToString:@"None"]) {
+			
+			[self navigationItem].rightBarButtonItem = nil;
+			
+			NSLog(@"No Ticket Owned:");
+			NSLog(@"Response: %@", response);
+			
+			self.ticketOwned = NO;
+			self.ticketLoaded = YES;
+			self.ticketData = @"";
+			if ([self.gameData objectForKey:@"numberOfTickets"] > 0) {
+				self.ticketLabel.text = @"Purchase Ticket";
+			}
+			else {
+				self.ticketLabel.text = @"Sold Out";
+			}
+		}
+		else if ([[response valueForKeyPath:@"message"] isEqualToString:@"Success"]) {
+			
+			[self navigationItem].rightBarButtonItem = nil;
+			
+			NSLog(@"Ticket Loaded");
+			NSLog(@"Response: %@", response);
+			self.ticketOwned = YES;
+			self.ticketLoaded = YES;
+			self.ticketData = [response objectForKey:@"ticket"];
+			self.ticketLabel.text = @"Show Ticket";
+			
 		}
 		else {
-			self.ticketLabel.text = @"Sold Out";
-		}
-	}
-	else if ([[response valueForKeyPath:@"message"] isEqualToString:@"Success"]) {
-		
-		[self navigationItem].rightBarButtonItem = nil;
-		
-		NSLog(@"Ticket Loaded");
-		NSLog(@"Response: %@", response);
-		self.ticketOwned = YES;
-		self.ticketLoaded = YES;
-		self.ticketData = [response objectForKey:@"ticket"];
-		self.ticketLabel.text = @"Show Ticket";
-
-	}
-	else {
-		
-		if ([self.ticketLabel.text isEqualToString:@""] || [self.ticketLabel.text isEqualToString:@"Loading..."]) {
 			
-			self.ticketLabel.text = @"Ticket Not Loaded";
+			if ([self.ticketLabel.text isEqualToString:@""] || [self.ticketLabel.text isEqualToString:@"Loading..."]) {
+				
+				self.ticketLabel.text = @"Ticket Not Loaded";
+			}
+			
+			NSLog(@"Ticket Load Failed:");
+			NSLog(@"Response: %@", response);
+			
+			UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Ticket Data" message:@"Server denied request" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+			
+			[loginAlert show];
+			
 		}
-
-		NSLog(@"Ticket Load Failed:");
-		NSLog(@"Response: %@", response);
-		
-		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:@"Server denied request" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-		
-		[loginAlert show];
-		
 	}
-
+	else if ([[message objectForKey:@"type"] isEqualToString:@"purchaseTicket"]) {
+		if ([[response objectForKey:@"message"] isEqualToString:@"Success"]) {
+			
+			self.ticketData = [[response objectForKey:@"ticket"] objectForKey:@"ticketCode"];
+			self.ticketOwned = YES;
+			self.ticketLoaded = YES;
+			self.ticketLabel.text = @"Show Ticket";
+			[self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+			
+			NSMutableDictionary *tempGameData = [self.gameData mutableCopy];
+			
+			NSNumber *ticketsRemaining = [[NSNumberFormatter new] numberFromString:[tempGameData objectForKey:@"numberOfTickets"]];
+			
+			NSString *ticketsRemainingString = [[NSNumber numberWithInt:[ticketsRemaining intValue] - 1] stringValue];
+			
+			[tempGameData setObject:ticketsRemainingString forKey:@"numberOfTickets"];
+			
+			self.gameData = tempGameData;
+			
+			[self reloadData];
+		}
+		else {
+			NSLog(@"Ticket Purchase Failed:");
+			NSLog(@"Response: %@", response);
+			
+			UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Purchasing Ticket" message:@"Server denied request" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+			
+			[loginAlert show];
+		}
+	}
 }
 
 - (void)networkingResponseFailedForMessage:(NSDictionary *)message error:(NSError *)error {
@@ -165,7 +182,7 @@
 		self.ticketLabel.text = @"Ticket Not Loaded";
 	}
 	
-	UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Game Data" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+	UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Ticket Data" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 	
 	[loginAlert show];
 	
@@ -258,17 +275,40 @@
 }
 */
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		
+		[self.activityIndicator startAnimating];
+		
+		NSString *userID = [Lockbox stringForKey:kUserIDKeyString];
+		NSString *type = @"purchaseTicket";
+		NSString *gameID = [self.gameData objectForKey:@"gameID"];
+		
+		NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+								userID, @"userID",
+								gameID, @"gameID",
+								type, @"type",
+								nil];
+		[NetworkingManager sendDictionary:params responseHandler:self];
+	}
+}
+
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0 && indexPath.row == 0 && self.ticketOwned) {
-		if (self.ticketLoaded && self.ticketOwned) {
-			QRCodeViewController *qrCodeViewController = [[QRCodeViewController alloc] initWithNibName:@"QRCodeView" bundle:nil dataString:self.ticketData];
-			[self presentModalViewController:qrCodeViewController animated:YES];
-		}
-		else {
-			
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		if (self.ticketLoaded) {
+			if (self.ticketOwned) {
+				QRCodeViewController *qrCodeViewController = [[QRCodeViewController alloc] initWithNibName:@"QRCodeView" bundle:nil dataString:self.ticketData];
+				[self presentModalViewController:qrCodeViewController animated:YES];
+			}
+			else if ([self.gameData objectForKey:@"numberOfTickets"] > 0) {
+				UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Confirm Purchase" message:@"Are you sure you would like to buy a ticket for $4.99" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+				
+				[loginAlert show];
+			}
 		}
 	}
 }
