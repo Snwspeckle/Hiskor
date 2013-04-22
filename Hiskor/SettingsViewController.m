@@ -43,6 +43,7 @@
 	self.pickerView.delegate = self;
 
 	self.hiddenHomeSchoolTextField.inputView = self.pickerView;
+	
 	UIToolbar *accessoryView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	accessoryView.barStyle = UIBarStyleBlackTranslucent;
 	

@@ -17,8 +17,8 @@
 @property (nonatomic, assign) BOOL shouldScrollToTop;
 
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UITableView *inputTableView;
 @property (strong, nonatomic) TextInputCell *firstNameCell;
 @property (strong, nonatomic) TextInputCell *lastNameCell;
@@ -26,5 +26,7 @@
 @property (strong, nonatomic) TextInputCell *confirmEmailCell;
 @property (strong, nonatomic) TextInputCell *passwordCell;
 @property (strong, nonatomic) TextInputCell *confirmPasswordCell;
+
+@property (nonatomic, strong) NSString *passwordMD5;
 
 @end

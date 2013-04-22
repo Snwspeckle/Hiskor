@@ -49,6 +49,10 @@
 	[self.view addSubview:self.inputTableView];
     [self.view sendSubviewToBack:self.inputTableView];
 	
+	self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+	[self.activityIndicator startAnimating];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +78,8 @@
     NSString *password = self.passwordCell.textField.text;
     NSString *confirmPassword = self.confirmPasswordCell.textField.text;
     NSString *type = @"register";
-    
+	
+	
 	if ([firstName isEqualToString:@""] || [lastName isEqualToString:@""] || [email isEqualToString:@""] || [confirmEmail isEqualToString:@""] || [password isEqualToString:@""] || [confirmPassword isEqualToString:@""]) {
 		
 		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error During Registration" message:@"All fields are required" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -83,24 +88,41 @@
 		return;
 	}
 	
+	if (![[email lowercaseString] isEqualToString:[confirmEmail lowercaseString]]) {
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error During Registration" message:@"Both emails must match" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		return;
+	}
+	
+	if (![password isEqualToString:confirmPassword]) {
+		
+		UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error During Registration" message:@"Both passwords must match" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		
+		[loginAlert show];
+		return;
+	}
 	
     // Hashing Algorithm
     NSString *saltPassword = [password stringByAppendingString:salt];
     NSString *passwordMD5 = [self md5:saltPassword];
     
-    if ([email isEqualToString:confirmEmail] && [password isEqualToString:confirmPassword]) {
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                firstName, @"firstName",
-								lastName, @"LastName",
-                                passwordMD5, @"passwordMD5",
-                                email, @"email",
-                                type, @"type",
-                                nil];
-        
-        NSLog(@"Params: %@", params);
-        
-		[NetworkingManager sendDictionary:params responseHandler:self];
-    }
+	self.passwordMD5 = passwordMD5;
+	
+	[self.activityIndicator startAnimating];
+	
+	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+							firstName, @"firstName",
+							lastName, @"lastName",
+							passwordMD5, @"passwordMD5",
+							email, @"email",
+							type, @"type",
+							nil];
+	
+	NSLog(@"Params: %@", params);
+	
+	[NetworkingManager sendDictionary:params responseHandler:self];
 }
 
 // MD5 Hashing Function
@@ -190,6 +212,25 @@
 	if ([[message objectForKey:@"type"] isEqualToString:@"register"]) {
 		if ([[response objectForKey:@"status"] isEqualToString:@"Registration Passed"]) {
 			
+			NSString *type = @"login";
+			NSString *email = [response objectForKey:@"email"];
+			
+			NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+									email, @"email",
+									self.passwordMD5, @"passwordMD5",
+									type, @"type",
+									nil];
+			[NetworkingManager sendDictionary:params responseHandler:self];
+		}
+		else {
+			UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error During Registration" message:@"Please confirm all fields are filled out correctly" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+			
+			[loginAlert show];
+		}
+	}
+	else if ([[message objectForKey:@"type"] isEqualToString:@"login"]) {
+		if ([[response objectForKey:@"message"] isEqualToString:@"Success"]) {
+			
 			// Save username to keychain
 			[Lockbox setString:[response valueForKeyPath:@"username"] forKey:kUserIDKeyString];
 			
@@ -199,10 +240,12 @@
 			// Save login status to keychain
 			[Lockbox setString:@"TRUE" forKey:kLoggedinStatusKeyString];
 			
+			[self.activityIndicator stopAnimating];
+			
 			[self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 		}
 		else {
-			UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error During Registration" message:@"Please confirm all fields are filled out correctly" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+			UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Error During Registration" message:@"Server denied login" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 			
 			[loginAlert show];
 		}
